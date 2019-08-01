@@ -1,0 +1,71 @@
+## Getting Started
+
+### Prerequisites
+
+- Node.js >= 8
+- NPM >= 3.0
+- Android Studio (for Android apps)
+- Xcode >= 10 (for iOS apps)
+- An <a href="http://www.electrode.io/site/native.html">Electrode Native</a> miniapp
+
+### Install as a dependency in your miniapp
+
+```console
+$ npm install --save ern-navigation
+```
+
+### Try it out!
+
+First, lets create some components to act as the app's different screens.
+Each of these components should extend Electrode Native Navigation's <a href="#Component">Component</a> class, and will need to define a few class properties.  Here's an example:
+```js
+import { Component } from 'ern-navigation'
+...
+export default MainScreenComponent extends Component {
+  static displayName = 'Main Screen'
+  static navigationOptions = {
+    title: 'My Application',
+    buttons: [{
+      icon: Image.resolveAssetSource(exitIcon).uri,
+      id: 'exit',
+      location: 'right',
+      accessibilityLabel: 'Exit this app'
+    }]
+  }
+ onNavButtonPress (buttonId) {
+   switch (buttonId) {
+     case 'exit':
+       this.finish()
+       break
+     default:
+       console.warn(`Screen '${MainScreenComponent.getRegisteredRoute()}' received unmapped button id '${buttonId}'`)
+       break
+   }
+ }
+  ...
+}
+```
+
+Once all of the screen components have been created, they will need to be registered using Electrode Native Navigation's <a href="#AppNavigator">AppNavigator</a> class, like this:
+
+```js
+import { AppNavigator } from 'ern-navigation'
+...
+new AppNavigator({
+  'MainScreen': MainScreenComponent,
+  'SecondScreen': SecondScreenComponent
+  ...
+}, {
+  initialScreen: 'MainScreen'
+}).registerAll('MyMiniApp')
+```
+
+In this example, the `MainScreenComponent` and `SecondScreenComponent` are referred to as `MainScreen` and `SecondScreen`, respectively, whenever any navigation is performed.  From inside any of the screen components, calling `this.navigateInternal(screenName)` will navigate to the specified registered screen.
+
+## Documentation
+
+{{>main}}
+
+* * *
+
+&copy; 2019 WalmartLabs

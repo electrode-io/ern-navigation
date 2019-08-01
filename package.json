@@ -1,0 +1,43 @@
+{
+  "name": "ern-navigation",
+  "author": "Electrode Native Team",
+  "version": "1.0.0",
+  "description": "Components and API for Electrode Native Navigation",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "standard '**/*.js'",
+    "precommit": "npm run lint && npm docs",
+    "docs": "rm -rf docs/ && rm -rf internaldocs/ && jsdoc ./src -r -d ./docs/ && jsdoc ./src -r -p -d ./internaldocs/ && jsdoc2md ./src/components/*.js --template ./templates/README.hbs > README.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/electrode-io/ern-navigation.git"
+  },
+  "keywords": [
+    "react",
+    "electrode",
+    "native",
+    "navigation"
+  ],
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/electrode-io/ern-navigation/issues"
+  },
+  "homepage": "https://github.com/electrode-io/ern-navigation#readme",
+  "dependencies": {
+    "ernnavigation-api": "1.0.5",
+    "ernnavigation-api-impl-native": "1.0.6",
+    "react": "16.8.3",
+    "react-native": "0.59.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.4",
+    "@babel/runtime": "^7.5.4",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.8.0",
+    "jsdoc": "^3.6.3",
+    "jsdoc-to-markdown": "^5.0.0",
+    "metro-react-native-babel-preset": "^0.55.0",
+    "standard": "^12.0.1"
+  }
+}
