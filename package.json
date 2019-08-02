@@ -1,7 +1,7 @@
 {
   "name": "ern-navigation",
   "author": "Electrode Native Team",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Components and API for Electrode Native Navigation",
   "main": "src/index.js",
   "scripts": {
@@ -26,9 +26,11 @@
   "homepage": "https://github.com/electrode-io/ern-navigation#readme",
   "dependencies": {
     "ernnavigation-api": "1.0.5",
-    "ernnavigation-api-impl-native": "1.0.6",
-    "react": "16.8.3",
-    "react-native": "0.59.4"
+    "ernnavigation-api-impl-native": "1.0.6"
+  },
+  "peerDependencies": {
+    "react": ">=15.0.0",
+    "react-native": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.5.4",
