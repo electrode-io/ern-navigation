@@ -5,7 +5,7 @@
   "description": "Components and API for Electrode Native Navigation",
   "main": "src/index.js",
   "scripts": {
-    "lint": "standard '**/*.js'",
+    "lint": "standard --parser babel-eslint 'src/**/*.js'",
     "precommit": "npm run lint && npm docs",
     "docs": "rm -rf docs/ && rm -rf internaldocs/ && jsdoc ./src -r -d ./docs/ && jsdoc ./src -r -p -d ./internaldocs/ && jsdoc2md ./src/components/*.js --template ./templates/README.hbs > README.md"
   },

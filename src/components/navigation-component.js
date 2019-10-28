@@ -207,7 +207,7 @@ class Component extends React.Component {
   static _getNavigationBar (jsonPayload) {
     return {
       ...this.navigationOptions,
-      title: this.getDynamicTitle(jsonPayload) || this.navigationOptions.title,
+      title: this.getDynamicTitle(jsonPayload) || this.navigationOptions.title
     }
   }
 
