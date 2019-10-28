@@ -4,6 +4,9 @@
   "version": "1.2.3",
   "description": "Components and API for Electrode Native Navigation",
   "main": "src/index.js",
+  "files": [
+    "src/"
+  ],
   "scripts": {
     "docs": "rm -rf docs/ && jsdoc -c jsdoc.js",
     "docs:private": "rm -rf docs-private/ && jsdoc -c jsdoc.js -p",
