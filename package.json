@@ -40,6 +40,8 @@
     "jsdoc": "^3.6.3",
     "jsdoc-to-markdown": "^5.0.0",
     "metro-react-native-babel-preset": "^0.55.0",
+    "react": "16.8.6",
+    "react-native": "0.60.5",
     "standard": "^12.0.1"
   }
 }
