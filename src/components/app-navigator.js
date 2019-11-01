@@ -1,4 +1,4 @@
-import { AppRegistry } from 'react-native'
+import {AppRegistry} from 'react-native';
 
 /**
  * @typedef {Object} AppNavigatorOptions
@@ -20,26 +20,26 @@ import { AppRegistry } from 'react-native'
  * }).registerAll('MyMiniApp')
  */
 class AppNavigator {
-  static screens = {}
-  static options = {}
+  static screens = {};
+  static options = {};
 
-  constructor (screens, options) {
+  constructor(screens, options) {
     if (!screens || Object.keys(screens).length < 1) {
-      throw new Error('screens parameter must be a non-empty object')
+      throw new Error('screens parameter must be a non-empty object');
     }
-    let firstScreen = Object.keys(screens)[0]
+    let firstScreen = Object.keys(screens)[0];
     Object.keys(screens).forEach(screen => {
       if (!screen || !screens[screen]) {
-        throw new Error('each screen must be defined')
+        throw new Error('each screen must be defined');
       }
-    })
-    this.screens = screens
-    this.options = options || {}
+    });
+    this.screens = screens;
+    this.options = options || {};
     if (!this.options.initialScreen) {
-      this.options.initialScreen = firstScreen
+      this.options.initialScreen = firstScreen;
     }
     if (!(this.options.initialScreen in this.screens)) {
-      throw new Error('the initial screen must be a valid screen identifier')
+      throw new Error('the initial screen must be a valid screen identifier');
     }
   }
 
@@ -47,17 +47,17 @@ class AppNavigator {
    * Register all screens.
    * @param {!string} miniappName - The name of the miniapp.
    */
-  registerAll (miniappName) {
+  registerAll(miniappName) {
     Object.keys(this.screens).forEach(screen => {
-      const route = screen === this.options.initialScreen ? miniappName : `${miniappName}.${screen}`
-      this.screens[screen].setRegisteredRoute(route)
-      this.screens[screen].setAppNavigator(this)
-      AppRegistry.registerComponent(
-        route,
-        () => this.screens[screen]
-      )
-    })
+      const route =
+        screen === this.options.initialScreen
+          ? miniappName
+          : `${miniappName}.${screen}`;
+      this.screens[screen].setRegisteredRoute(route);
+      this.screens[screen].setAppNavigator(this);
+      AppRegistry.registerComponent(route, () => this.screens[screen]);
+    });
   }
 }
 
-export default AppNavigator
+export default AppNavigator;

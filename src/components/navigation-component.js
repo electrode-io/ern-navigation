@@ -1,6 +1,6 @@
-import React from 'react'
-import { EnNavigationApi } from 'ernnavigation-api'
-import AppNavigator from './app-navigator'
+import React from 'react';
+import {EnNavigationApi} from 'ernnavigation-api';
+import AppNavigator from './app-navigator';
 
 /**
  * @class Component
@@ -54,39 +54,50 @@ import AppNavigator from './app-navigator'
  */
 
 export const errors = {
-  invalidAppNavigator: new Error('The appNavigator has not been set or is not a valid instance of AppNavigator.  Internal navigation is not available.'),
-  noValidScreens: new Error('No valid screens have been set.  Internal navigation is not available.'),
+  invalidAppNavigator: new Error(
+    'The appNavigator has not been set or is not a valid instance of AppNavigator.  Internal navigation is not available.',
+  ),
+  noValidScreens: new Error(
+    'No valid screens have been set.  Internal navigation is not available.',
+  ),
   noScreenName: new Error('The screenName is required'),
-  invalidScreenName: (screenName) => new Error(`'${screenName}' is not a valid screen name.`)
-}
+  invalidScreenName: screenName =>
+    new Error(`'${screenName}' is not a valid screen name.`),
+};
 
 class Component extends React.Component {
-  static appNavigator = undefined
-  static headerListener = undefined
-  static displayName = 'Component'
-  static route = ''
+  static appNavigator = undefined;
+  static headerListener = undefined;
+  static displayName = 'Component';
+  static route = '';
   static navigationOptions = {
     title: 'Untitled',
-    buttons: []
-  }
+    buttons: [],
+  };
 
-  constructor (props) {
-    super(props)
-    this.jsonProps = props.jsonPayload ? JSON.parse(props.jsonPayload) : {}
+  constructor(props) {
+    super(props);
+    this.jsonProps = props.jsonPayload ? JSON.parse(props.jsonPayload) : {};
     if (!this.headerListener) {
-      this.headerListener = EnNavigationApi.events().addOnNavButtonClickEventListener(this.constructor._handleNavButtonPress.bind(this))
+      this.headerListener = EnNavigationApi.events().addOnNavButtonClickEventListener(
+        this.constructor._handleNavButtonPress.bind(this),
+      );
     }
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     if (this.headerListener) {
-      EnNavigationApi.events().removeOnNavButtonClickEventListener(this.headerListener)
+      EnNavigationApi.events().removeOnNavButtonClickEventListener(
+        this.headerListener,
+      );
     }
   }
 
-  componentWillUpdate (nextProps) {
+  componentWillUpdate(nextProps) {
     if (this.props.jsonPayload !== nextProps.jsonPayload) {
-      this.jsonProps = nextProps.jsonPayload ? JSON.parse(nextProps.jsonPayload) : {}
+      this.jsonProps = nextProps.jsonPayload
+        ? JSON.parse(nextProps.jsonPayload)
+        : {};
     }
   }
 
@@ -96,11 +107,15 @@ class Component extends React.Component {
    * @static
    * @param {string} route - The registered route for this component.
    */
-  static setRegisteredRoute (route) {
+  static setRegisteredRoute(route) {
     if (!this.route) {
-      this.route = route
+      this.route = route;
     } else {
-      console.warn(`This component has already been registered as '${this.route}'.  Not re-registering as '${route}'.`)
+      console.warn(
+        `This component has already been registered as '${
+          this.route
+        }'.  Not re-registering as '${route}'.`,
+      );
     }
   }
 
@@ -110,8 +125,8 @@ class Component extends React.Component {
    * @static
    * @returns {string} A string containing the registered route for this component.
    */
-  static getRegisteredRoute () {
-    return this.route
+  static getRegisteredRoute() {
+    return this.route;
   }
 
   /**
@@ -119,8 +134,8 @@ class Component extends React.Component {
    *
    * @param {AppNavigator} appNavigator - The {@link AppNavigator} for this component.
    */
-  static setAppNavigator (appNavigator) {
-    this.appNavigator = appNavigator
+  static setAppNavigator(appNavigator) {
+    this.appNavigator = appNavigator;
   }
 
   /**
@@ -128,8 +143,8 @@ class Component extends React.Component {
    *
    * @returns {AppNavigator} The {@link AppNavigator} for this component.
    */
-  static getAppNavigator () {
-    return this.appNavigator
+  static getAppNavigator() {
+    return this.appNavigator;
   }
 
   /**
@@ -141,8 +156,8 @@ class Component extends React.Component {
    * // returns 'ButtonIdentifier'
    * NavigationBar._unlocalizeButtonId('RegisteredRoute.ButtonIdenfifier')
    */
-  static _unlocalizeButtonId (buttonId) {
-    return buttonId.substring(this.route.length + 1)
+  static _unlocalizeButtonId(buttonId) {
+    return buttonId.substring(this.route.length + 1);
   }
 
   /**
@@ -151,10 +166,10 @@ class Component extends React.Component {
    * @private
    * @param {string} buttonId - The ID of the {@link Button}.
    */
-  static _shouldDispatchButtonPressEvent (buttonId) {
-    const lastDot = buttonId.lastIndexOf('.')
-    const buttonRoute = lastDot > -1 ? buttonId.substring(0, lastDot) : ''
-    return buttonRoute === this.getRegisteredRoute()
+  static _shouldDispatchButtonPressEvent(buttonId) {
+    const lastDot = buttonId.lastIndexOf('.');
+    const buttonRoute = lastDot > -1 ? buttonId.substring(0, lastDot) : '';
+    return buttonRoute === this.getRegisteredRoute();
   }
 
   /**
@@ -168,11 +183,12 @@ class Component extends React.Component {
    * @private
    * @param {string} buttonId - The ID of the {@link Button} that was pressed.
    */
-  static _handleNavButtonPress (buttonId) {
+  static _handleNavButtonPress(buttonId) {
     if (this.constructor._shouldDispatchButtonPressEvent(buttonId)) {
-      const handler = this.onNavButtonPress || this.constructor.onNavButtonPress
+      const handler =
+        this.onNavButtonPress || this.constructor.onNavButtonPress;
       if (handler) {
-        handler.bind(this)(this.constructor._unlocalizeButtonId(buttonId))
+        handler.bind(this)(this.constructor._unlocalizeButtonId(buttonId));
       }
     }
   }
@@ -187,13 +203,18 @@ class Component extends React.Component {
    * @returns {NavigationBar} A {@link NavigationBar} object with the IDs of buttons updated to
    * pertain to the given route.
    */
-  static _localizeNavigationBar (routeName, navigationBar) {
-    return navigationBar ? {
-      ...navigationBar,
-      buttons: navigationBar.buttons
-        ? navigationBar.buttons.map(button => ({ ...button, id: `${routeName}.${button.id}` }))
-        : undefined
-    } : {}
+  static _localizeNavigationBar(routeName, navigationBar) {
+    return navigationBar
+      ? {
+          ...navigationBar,
+          buttons: navigationBar.buttons
+            ? navigationBar.buttons.map(button => ({
+                ...button,
+                id: `${routeName}.${button.id}`,
+              }))
+            : undefined,
+        }
+      : {};
   }
 
   /**
@@ -204,11 +225,11 @@ class Component extends React.Component {
    * @param {Object} jsonPayload - The JSON payload for the current route.
    * @returns {NavigationBar} A {@link NavigationBar} object for the given route.
    */
-  static _getNavigationBar (jsonPayload) {
+  static _getNavigationBar(jsonPayload) {
     return {
       ...this.navigationOptions,
-      title: this.getDynamicTitle(jsonPayload) || this.navigationOptions.title
-    }
+      title: this.getDynamicTitle(jsonPayload) || this.navigationOptions.title,
+    };
   }
 
   /**
@@ -220,8 +241,11 @@ class Component extends React.Component {
    * @returns {NavigationBar} A {@link NavigationBar} object with the IDs of buttons updated to
    * pertain to the current route.
    */
-  static _getLocalizedNavigationBar (jsonPayload) {
-    return this._localizeNavigationBar(this.route, this._getNavigationBar(jsonPayload))
+  static _getLocalizedNavigationBar(jsonPayload) {
+    return this._localizeNavigationBar(
+      this.route,
+      this._getNavigationBar(jsonPayload),
+    );
   }
 
   /**
@@ -232,8 +256,7 @@ class Component extends React.Component {
    * @static
    * @param {Object} jsonPayload - The JSON payload for the current route.
    */
-  static getDynamicTitle (jsonPayload) {
-  }
+  static getDynamicTitle(jsonPayload) {}
 
   /**
    * Handle button press events.
@@ -243,8 +266,13 @@ class Component extends React.Component {
    * @static
    * @param {string} buttonId - The ID of the button which was pressed.
    */
-  static onNavButtonPress (buttonId) {
-    console.warn(`\`onNavButtonPress(buttonId)\` was not overriden in ${this.constructor.name}, but a button press event was fired.`, { buttonId })
+  static onNavButtonPress(buttonId) {
+    console.warn(
+      `\`onNavButtonPress(buttonId)\` was not overriden in ${
+        this.constructor.name
+      }, but a button press event was fired.`,
+      {buttonId},
+    );
   }
 
   /**
@@ -255,11 +283,11 @@ class Component extends React.Component {
    * @return {Promise} A <code>Promise</code> which will resolve or reject upon attempting to
    * reset the navigation bar.
    */
-  resetNavigationBar () {
+  resetNavigationBar() {
     return EnNavigationApi.requests().update({
       path: this.constructor.route,
-      navigationBar: this.constructor._getLocalizedNavigationBar()
-    })
+      navigationBar: this.constructor._getLocalizedNavigationBar(),
+    });
   }
 
   /**
@@ -271,11 +299,14 @@ class Component extends React.Component {
    * @return {Promise} A <code>Promise</code> which will resolve or reject upon attempting to
    * update the navigation bar.
    */
-  updateNavigationBar (navigationBar) {
+  updateNavigationBar(navigationBar) {
     return EnNavigationApi.requests().update({
       path: this.constructor.route,
-      navigationBar: this.constructor._localizeNavigationBar(this.constructor.route, navigationBar)
-    })
+      navigationBar: this.constructor._localizeNavigationBar(
+        this.constructor.route,
+        navigationBar,
+      ),
+    });
   }
 
   /**
@@ -287,8 +318,8 @@ class Component extends React.Component {
    * @return {Promise} A <code>Promise</code> which will resolve or reject upon attempting to
    * navigate to the given route.
    */
-  navigate (route) {
-    return EnNavigationApi.requests().navigate(route)
+  navigate(route) {
+    return EnNavigationApi.requests().navigate(route);
   }
 
   /**
@@ -303,28 +334,39 @@ class Component extends React.Component {
    * @return {Promise} A <code>Promise</code> which will resolve or reject upon attempting to
    * navigate to the new screen.
    */
-  navigateInternal (screenName, jsonPayload) {
+  navigateInternal(screenName, jsonPayload) {
     if (!this.constructor.getAppNavigator()) {
-      throw errors.invalidAppNavigator
+      throw errors.invalidAppNavigator;
     }
     if (!(this.constructor.getAppNavigator() instanceof AppNavigator)) {
-      throw errors.invalidAppNavigator
+      throw errors.invalidAppNavigator;
     }
-    if (!this.constructor.getAppNavigator().screens || Object.keys(this.constructor.getAppNavigator().screens).length < 1) {
-      throw errors.noValidScreens
+    if (
+      !this.constructor.getAppNavigator().screens ||
+      Object.keys(this.constructor.getAppNavigator().screens).length < 1
+    ) {
+      throw errors.noValidScreens;
     }
     if (!screenName) {
-      throw errors.noScreenName
+      throw errors.noScreenName;
     }
-    if (!Object.keys(this.constructor.getAppNavigator().screens).includes(screenName)) {
-      throw errors.invalidScreenName(screenName)
+    if (
+      !Object.keys(this.constructor.getAppNavigator().screens).includes(
+        screenName,
+      )
+    ) {
+      throw errors.invalidScreenName(screenName);
     }
 
     return EnNavigationApi.requests().navigate({
-      path: this.constructor.getAppNavigator().screens[screenName].getRegisteredRoute(),
-      navigationBar: this.constructor.getAppNavigator().screens[screenName]._getLocalizedNavigationBar(jsonPayload),
-      jsonPayload: JSON.stringify(jsonPayload || {})
-    })
+      path: this.constructor
+        .getAppNavigator()
+        .screens[screenName].getRegisteredRoute(),
+      navigationBar: this.constructor
+        .getAppNavigator()
+        .screens[screenName]._getLocalizedNavigationBar(jsonPayload),
+      jsonPayload: JSON.stringify(jsonPayload || {}),
+    });
   }
 
   /**
@@ -337,26 +379,35 @@ class Component extends React.Component {
    * @return {Promise} A <code>Promise</code> which will resolve or reject upon attempting to
    * go back to the specified screen.
    */
-  backTo (screenName) {
+  backTo(screenName) {
     if (!this.constructor.getAppNavigator()) {
-      throw errors.invalidAppNavigator
+      throw errors.invalidAppNavigator;
     }
     if (!(this.constructor.getAppNavigator() instanceof AppNavigator)) {
-      throw errors.invalidAppNavigator
+      throw errors.invalidAppNavigator;
     }
-    if (!this.constructor.getAppNavigator().screens || Object.keys(this.constructor.getAppNavigator().screens).length < 1) {
-      throw errors.noValidScreens
+    if (
+      !this.constructor.getAppNavigator().screens ||
+      Object.keys(this.constructor.getAppNavigator().screens).length < 1
+    ) {
+      throw errors.noValidScreens;
     }
     if (!screenName) {
-      throw errors.noScreenName
+      throw errors.noScreenName;
     }
-    if (!Object.keys(this.constructor.getAppNavigator().screens).includes(screenName)) {
-      throw errors.invalidScreenName(screenName)
+    if (
+      !Object.keys(this.constructor.getAppNavigator().screens).includes(
+        screenName,
+      )
+    ) {
+      throw errors.invalidScreenName(screenName);
     }
 
     return EnNavigationApi.requests().back({
-      path: this.constructor.getAppNavigator().screens[screenName].getRegisteredRoute()
-    })
+      path: this.constructor
+        .getAppNavigator()
+        .screens[screenName].getRegisteredRoute(),
+    });
   }
 
   /**
@@ -367,8 +418,8 @@ class Component extends React.Component {
    * @return {Promise} A <code>Promise</code> which will resolve or reject upon attempting to
    * go back one screen.
    */
-  back () {
-    return EnNavigationApi.requests().back()
+  back() {
+    return EnNavigationApi.requests().back();
   }
 
   /**
@@ -381,9 +432,9 @@ class Component extends React.Component {
    * @return {Promise} A <code>Promise</code> which will resolve or reject upon attempting to
    * finish the current flow.
    */
-  finish (payload) {
-    return EnNavigationApi.requests().finish(JSON.stringify(payload || {}))
+  finish(payload) {
+    return EnNavigationApi.requests().finish(JSON.stringify(payload || {}));
   }
 }
 
-export default Component
+export default Component;
