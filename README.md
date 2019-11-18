@@ -62,6 +62,9 @@ new AppNavigator({
 
 In this example, the `MainScreenComponent` and `SecondScreenComponent` are referred to as `MainScreen` and `SecondScreen`, respectively, whenever any navigation is performed.  From inside any of the screen components, calling `this.navigateInternal(screenName)` will navigate to the specified registered screen.
 
+## Example
+This [MoviesReloaded](https://github.com/electrode-io/movies-reloaded-miniapp) miniapp outlines the different mechanisms that are provided to you by Electrode Native Navigation.
+
 ## Documentation
 
 ## Classes
