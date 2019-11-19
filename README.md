@@ -65,6 +65,9 @@ In this example, the `MainScreenComponent` and `SecondScreenComponent` are refer
 ## Example
 This [MoviesReloaded](https://github.com/electrode-io/movies-reloaded-miniapp) miniapp outlines the different mechanisms that are provided to you by Electrode Native Navigation.
 
+## Further Reading
+Checkout our [Electode Native Navigation Blog Post](https://medium.com/walmartlabs/electrode-native-navigation-576297fbcb3d)
+
 ## Documentation
 
 ## Classes
