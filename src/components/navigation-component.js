@@ -10,11 +10,14 @@ import AppNavigator from './app-navigator';
  * appropriate super method - <code>super.componentWillUnmount()</code> or
  * <code>super.componentWillUpdate(nextProps, nextState)</code>, respectively.
  * @extends React.Component
+ * @property autoReset=true {boolean} - (static) Whether to automatically reset the navigation bar upon component display. (defaults to <code>true</code>)
+ * @property navigationOptions {NavigationBar} - (static) The navigation bar for this component.  Defaults to a title of "Untitled" with no right {@link Button}s.
  * @example
  * import { Component } from 'ern-navigation'
  * ...
  * export default MainScreenComponent extends Component {
  *   static displayName = 'Main Screen'
+ *   static autoReset = true;
  *   static navigationOptions = {
  *     title: 'My Application',
  *     buttons: [{
@@ -40,16 +43,27 @@ import AppNavigator from './app-navigator';
 
 /**
  * @typedef {Object} NavigationBar
- * @property {string} title -The title for the navigation bar.
- * @property {Button[]} buttons - The {@link Button}s to display on the navigation bar.
+ * @property {string} title - The title for the navigation bar.
+ * @property {?boolean} overlay - (optional) Show this page as an overlay (navigate only).
+ * @property {Button[]} buttons - The {@link Button}s to display on the right side of the navigation bar.
+ * @property {?LeftButton} leftButton - The {@link LeftButton} to display on the left side of the navigation bar.
  */
 
 /**
  * @typedef {Object} Button
  * @property {?string} icon - The location of the icon (use <code>Image.resolveAssetSource(iconFile).uri</code>)
  * or the name of a built-in icon.
+ * @property {?string} title - The title for the button; will be used in case of missing or invalid icon.
  * @property {!string} id - The ID of the button; will be used in header button events.  Cannot contain '.'.
- * @property {('left'|'right')} [location='right'] - (optional) Where to display the icon (either 'left' or 'right').
+ * @property {?string} accessibilityLabel - The text to read out with screen-reader technology.
+ */
+
+/**
+ * @typedef {Object} LeftButton
+ * @property {?string} icon - The location of the icon (use <code>Image.resolveAssetSource(iconFile).uri</code>)
+ * or the name of a built-in icon.
+ * @property {?string} title - The title for the button (iOS only).
+ * @property {?string} id - The ID of the button; will be used in header button events.  If set, the press event must be handled on the Javascript side, as native will no longer handle the back press.  Cannot contain '.'.
  * @property {?string} accessibilityLabel - The text to read out with screen-reader technology.
  */
 
@@ -70,6 +84,7 @@ class Component extends React.Component {
   static headerListener = undefined;
   static displayName = 'Component';
   static route = '';
+  static autoReset = true;
   static navigationOptions = {
     title: 'Untitled',
     buttons: [],
@@ -82,6 +97,9 @@ class Component extends React.Component {
       this.headerListener = EnNavigationApi.events().addOnNavButtonClickEventListener(
         this.constructor._handleNavButtonPress.bind(this),
       );
+    }
+    if (this.constructor.autoReset) {
+      this.resetNavigationBar();
     }
   }
 
@@ -204,17 +222,27 @@ class Component extends React.Component {
    * pertain to the given route.
    */
   static _localizeNavigationBar(routeName, navigationBar) {
-    return navigationBar
-      ? {
-          ...navigationBar,
-          buttons: navigationBar.buttons
-            ? navigationBar.buttons.map(button => ({
-                ...button,
-                id: `${routeName}.${button.id}`,
-              }))
-            : undefined,
-        }
-      : {};
+    if (!navigationBar) {
+      return {};
+    }
+    return {
+      ...navigationBar,
+      leftButton: navigationBar.leftButton
+        ? {
+            ...navigationBar.leftButton,
+            id: navigationBar.leftButton.id
+              ? `${routeName}.${navigationBar.leftButton.id}`
+              : undefined,
+          }
+        : undefined,
+      buttons: navigationBar.buttons
+        ? navigationBar.buttons.map(button => ({
+            ...button,
+            location: 'right',
+            id: `${routeName}.${button.id}`,
+          }))
+        : undefined,
+    };
   }
 
   /**
@@ -228,7 +256,9 @@ class Component extends React.Component {
   static _getNavigationBar(jsonPayload) {
     return {
       ...this.navigationOptions,
-      title: this.getDynamicTitle(jsonPayload) || this.navigationOptions.title,
+      title:
+        this.getDynamicTitle(jsonPayload) ||
+        (this.navigationOptions || {}).title,
     };
   }
 
@@ -284,10 +314,11 @@ class Component extends React.Component {
    * reset the navigation bar.
    */
   resetNavigationBar() {
-    return EnNavigationApi.requests().update({
-      path: this.constructor.route,
-      navigationBar: this.constructor._getLocalizedNavigationBar(),
-    });
+    return this.updateNavigationBar(this.constructor._getNavigationBar());
+    // return EnNavigationApi.requests().update({
+    //   path: this.constructor.route,
+    //   navigationBar: this.constructor._getLocalizedNavigationBar(),
+    // });
   }
 
   /**
@@ -300,13 +331,18 @@ class Component extends React.Component {
    * update the navigation bar.
    */
   updateNavigationBar(navigationBar) {
-    return EnNavigationApi.requests().update({
+    const {
+      overlay,
+      ...localizedNavigationBar
+    } = this.constructor._localizeNavigationBar(
+      this.constructor.route,
+      navigationBar,
+    );
+    const routePayload = {
       path: this.constructor.route,
-      navigationBar: this.constructor._localizeNavigationBar(
-        this.constructor.route,
-        navigationBar,
-      ),
-    });
+      navigationBar: localizedNavigationBar,
+    };
+    return EnNavigationApi.requests().update(routePayload);
   }
 
   /**
@@ -358,15 +394,17 @@ class Component extends React.Component {
       throw errors.invalidScreenName(screenName);
     }
 
-    return EnNavigationApi.requests().navigate({
-      path: this.constructor
-        .getAppNavigator()
-        .screens[screenName].getRegisteredRoute(),
-      navigationBar: this.constructor
-        .getAppNavigator()
-        .screens[screenName]._getLocalizedNavigationBar(jsonPayload),
+    const nav = this.constructor.getAppNavigator().screens[screenName];
+    const {overlay, ...navigationBar} = nav._getLocalizedNavigationBar(
+      jsonPayload,
+    );
+    const routePayload = {
+      path: nav.getRegisteredRoute(),
+      overlay,
+      navigationBar,
       jsonPayload: JSON.stringify(jsonPayload || {}),
-    });
+    };
+    return EnNavigationApi.requests().navigate(routePayload);
   }
 
   /**

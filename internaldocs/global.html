@@ -262,8 +262,6 @@ the first screen defined in the screens will be used.</td>
         
 
         
-        <th>Default</th>
-        
 
         <th class="last">Description</th>
     </tr>
@@ -297,13 +295,40 @@ the first screen defined in the screens will be used.</td>
             
 
             
-                <td class="default">
+
+            <td class="description last">The location of the icon (use <code>Image.resolveAssetSource(iconFile).uri</code>)
+or the name of a built-in icon.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>title</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                    &lt;nullable><br>
                 
                 </td>
             
 
-            <td class="description last">The location of the icon (use <code>Image.resolveAssetSource(iconFile).uri</code>)
-or the name of a built-in icon.</td>
+            
+
+            <td class="description last">The title for the button; will be used in case of missing or invalid icon.</td>
         </tr>
 
     
@@ -331,52 +356,8 @@ or the name of a built-in icon.</td>
             
 
             
-                <td class="default">
-                
-                </td>
-            
 
             <td class="description last">The ID of the button; will be used in header button events.  Cannot contain '.'.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>location</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">'left'</span>
-|
-
-<span class="param-type">'right'</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    'right'
-                
-                </td>
-            
-
-            <td class="description last">(optional) Where to display the icon (either 'left' or 'right').</td>
         </tr>
 
     
@@ -405,10 +386,6 @@ or the name of a built-in icon.</td>
                 </td>
             
 
-            
-                <td class="default">
-                
-                </td>
             
 
             <td class="description last">The text to read out with screen-reader technology.</td>
@@ -450,7 +427,231 @@ or the name of a built-in icon.</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line47">line 47</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line52">line 52</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+            
+                
+<h4 class="name" id="LeftButton">LeftButton</h4>
+
+
+
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>icon</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                    &lt;nullable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The location of the icon (use <code>Image.resolveAssetSource(iconFile).uri</code>)
+or the name of a built-in icon.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>title</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                    &lt;nullable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The title for the button (iOS only).</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                    &lt;nullable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The ID of the button; will be used in header button events.  If set, the press event must be handled on the Javascript side, as native will no longer handle the back press.  Cannot contain '.'.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>accessibilityLabel</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                    &lt;nullable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The text to read out with screen-reader technology.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line61">line 61</a>
     </li></ul></dd>
     
 
@@ -503,6 +704,8 @@ or the name of a built-in icon.</td>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -528,10 +731,47 @@ or the name of a built-in icon.</td>
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last">The title for the navigation bar.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>overlay</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                    &lt;nullable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last">(optional) Show this page as an overlay (navigate only).</td>
         </tr>
 
     
@@ -551,10 +791,47 @@ or the name of a built-in icon.</td>
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last">The <a href="global.html#Button">Button</a>s to display on the navigation bar.</td>
+            <td class="description last">The <a href="global.html#Button">Button</a>s to display on the right side of the navigation bar.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>leftButton</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#LeftButton">LeftButton</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                    &lt;nullable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The <a href="global.html#LeftButton">LeftButton</a> to display on the left side of the navigation bar.</td>
         </tr>
 
     
@@ -593,7 +870,7 @@ or the name of a built-in icon.</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line41">line 41</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line44">line 44</a>
     </li></ul></dd>
     
 
@@ -629,7 +906,7 @@ or the name of a built-in icon.</td>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Fri Nov 01 2019 13:34:50 GMT-0700 (Pacific Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Wed Dec 11 2019 18:38:20 GMT-0800 (PST)
 </footer>
 
 <script> prettyPrint(); </script>
