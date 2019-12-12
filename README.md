@@ -63,10 +63,10 @@ new AppNavigator({
 In this example, the `MainScreenComponent` and `SecondScreenComponent` are referred to as `MainScreen` and `SecondScreen`, respectively, whenever any navigation is performed.  From inside any of the screen components, calling `this.navigateInternal(screenName)` will navigate to the specified registered screen.
 
 ## Example
-This [MoviesReloaded](https://github.com/electrode-io/movies-reloaded-miniapp) miniapp outlines the different mechanisms that are provided to you by Electrode Native Navigation.
+The [MoviesReloaded](https://github.com/electrode-io/movies-reloaded-miniapp) miniapp outlines the different mechanisms that are provided to you by Electrode Native Navigation.
 
 ## Further Reading
-Checkout our [Electode Native Navigation Blog Post](https://medium.com/walmartlabs/electrode-native-navigation-576297fbcb3d)
+Check out our [Electode Native Navigation Blog Post](https://medium.com/walmartlabs/electrode-native-navigation-576297fbcb3d).
 
 ## Documentation
 
@@ -87,6 +87,8 @@ Checkout our [Electode Native Navigation Blog Post](https://medium.com/walmartla
 <dt><a href="#NavigationBar">NavigationBar</a> : <code>Object</code></dt>
 <dd></dd>
 <dt><a href="#Button">Button</a> : <code>Object</code></dt>
+<dd></dd>
+<dt><a href="#LeftButton">LeftButton</a> : <code>Object</code></dt>
 <dd></dd>
 </dl>
 
@@ -134,6 +136,13 @@ Register all screens.
 ## Component ⇐ <code>React.Component</code>
 **Kind**: global class  
 **Extends**: <code>React.Component</code>  
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| autoReset | <code>boolean</code> | <code>true</code> | (static) Whether to automatically reset the navigation bar upon component display. (defaults to <code>true</code>) |
+| navigationOptions | [<code>NavigationBar</code>](#NavigationBar) |  | (static) The navigation bar for this component.  Defaults to a title of "Untitled" with no right [Button](#Button)s. |
+
 
 * [Component](#Component) ⇐ <code>React.Component</code>
     * [new Component()](#new_Component_new)
@@ -167,6 +176,7 @@ import { Component } from 'ern-navigation'
 ...
 export default MainScreenComponent extends Component {
   static displayName = 'Main Screen'
+  static autoReset = true;
   static navigationOptions = {
     title: 'My Application',
     buttons: [{
@@ -350,7 +360,9 @@ Must be overriden in subclasses.
 | Name | Type | Description |
 | --- | --- | --- |
 | title | <code>string</code> | The title for the navigation bar. |
-| buttons | [<code>Array.&lt;Button&gt;</code>](#Button) | The [Button](#Button)s to display on the navigation bar. |
+| overlay | <code>boolean</code> | (optional) Show this page as an overlay (navigate only). |
+| buttons | [<code>Array.&lt;Button&gt;</code>](#Button) | The [Button](#Button)s to display on the right side of the navigation bar. |
+| leftButton | [<code>LeftButton</code>](#LeftButton) | The [LeftButton](#LeftButton) to display on the left side of the navigation bar. |
 
 <a name="Button"></a>
 
@@ -358,12 +370,25 @@ Must be overriden in subclasses.
 **Kind**: global typedef  
 **Properties**
 
-| Name | Type | Default | Description |
-| --- | --- | --- | --- |
-| icon | <code>string</code> |  | The location of the icon (use <code>Image.resolveAssetSource(iconFile).uri</code>) or the name of a built-in icon. |
-| id | <code>string</code> |  | The ID of the button; will be used in header button events.  Cannot contain '.'. |
-| [location] | <code>&#x27;left&#x27;</code> \| <code>&#x27;right&#x27;</code> | <code>&#x27;right&#x27;</code> | (optional) Where to display the icon (either 'left' or 'right'). |
-| accessibilityLabel | <code>string</code> |  | The text to read out with screen-reader technology. |
+| Name | Type | Description |
+| --- | --- | --- |
+| icon | <code>string</code> | The location of the icon (use <code>Image.resolveAssetSource(iconFile).uri</code>) or the name of a built-in icon. |
+| title | <code>string</code> | The title for the button; will be used in case of missing or invalid icon. |
+| id | <code>string</code> | The ID of the button; will be used in header button events.  Cannot contain '.'. |
+| accessibilityLabel | <code>string</code> | The text to read out with screen-reader technology. |
+
+<a name="LeftButton"></a>
+
+## LeftButton : <code>Object</code>
+**Kind**: global typedef  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| icon | <code>string</code> | The location of the icon (use <code>Image.resolveAssetSource(iconFile).uri</code>) or the name of a built-in icon. |
+| title | <code>string</code> | The title for the button (iOS only). |
+| id | <code>string</code> | The ID of the button; will be used in header button events.  If set, the press event must be handled on the Javascript side, as native will no longer handle the back press.  Cannot contain '.'. |
+| accessibilityLabel | <code>string</code> | The text to read out with screen-reader technology. |
 
 
 * * *

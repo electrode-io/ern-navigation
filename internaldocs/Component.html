@@ -67,6 +67,93 @@ appropriate super method - <code>super.componentWillUnmount()</code> or
 
 
 
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>autoReset</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    true
+                
+                </td>
+            
+
+            <td class="description last">(static) Whether to automatically reset the navigation bar upon component display. (defaults to <code>true</code>)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>navigationOptions</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#NavigationBar">NavigationBar</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">(static) The navigation bar for this component.  Defaults to a title of "Untitled" with no right <a href="global.html#Button">Button</a>s.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
 <dl class="details">
 
     
@@ -131,6 +218,7 @@ appropriate super method - <code>super.componentWillUnmount()</code> or
 ...
 export default MainScreenComponent extends Component {
   static displayName = 'Main Screen'
+  static autoReset = true;
   static navigationOptions = {
     title: 'My Application',
     buttons: [{
@@ -293,7 +381,7 @@ export default MainScreenComponent extends Component {
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line244">line 244</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line274">line 274</a>
     </li></ul></dd>
     
 
@@ -453,7 +541,7 @@ pertain to the current route.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line228">line 228</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line256">line 256</a>
     </li></ul></dd>
     
 
@@ -617,7 +705,7 @@ called, otherwise the class's static method will be called.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line186">line 186</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line204">line 204</a>
     </li></ul></dd>
     
 
@@ -777,7 +865,7 @@ called, otherwise the class's static method will be called.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line206">line 206</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line224">line 224</a>
     </li></ul></dd>
     
 
@@ -937,7 +1025,7 @@ pertain to the given route.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line169">line 169</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line187">line 187</a>
     </li></ul></dd>
     
 
@@ -1074,7 +1162,7 @@ pertain to the given route.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line159">line 159</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line177">line 177</a>
     </li></ul></dd>
     
 
@@ -1168,7 +1256,7 @@ NavigationBar._unlocalizeButtonId('RegisteredRoute.ButtonIdenfifier')</code></pr
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line146">line 146</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line164">line 164</a>
     </li></ul></dd>
     
 
@@ -1328,7 +1416,7 @@ Must be overriden in subclasses.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line259">line 259</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line289">line 289</a>
     </li></ul></dd>
     
 
@@ -1416,7 +1504,7 @@ Must be overriden in subclasses.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line128">line 128</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line146">line 146</a>
     </li></ul></dd>
     
 
@@ -1576,7 +1664,7 @@ Must be overriden in subclasses.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line269">line 269</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line299">line 299</a>
     </li></ul></dd>
     
 
@@ -1713,7 +1801,7 @@ Must be overriden in subclasses.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line137">line 137</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line155">line 155</a>
     </li></ul></dd>
     
 
@@ -1850,7 +1938,7 @@ Must be overriden in subclasses.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line110">line 110</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line128">line 128</a>
     </li></ul></dd>
     
 
@@ -1938,7 +2026,7 @@ Must be overriden in subclasses.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line421">line 421</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line459">line 459</a>
     </li></ul></dd>
     
 
@@ -2099,7 +2187,7 @@ should be defined in the initial <a href="AppNavigator.html">AppNavigator</a> se
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line382">line 382</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line420">line 420</a>
     </li></ul></dd>
     
 
@@ -2272,7 +2360,7 @@ controller that launched the flow.</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line435">line 435</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line473">line 473</a>
     </li></ul></dd>
     
 
@@ -2432,7 +2520,7 @@ finish the current flow.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line321">line 321</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line357">line 357</a>
     </li></ul></dd>
     
 
@@ -2637,7 +2725,7 @@ screen.</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line337">line 337</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line373">line 373</a>
     </li></ul></dd>
     
 
@@ -2748,7 +2836,7 @@ navigate to the new screen.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line286">line 286</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line316">line 316</a>
     </li></ul></dd>
     
 
@@ -2908,7 +2996,7 @@ reset the navigation bar.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line302">line 302</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line333">line 333</a>
     </li></ul></dd>
     
 
@@ -2983,7 +3071,7 @@ update the navigation bar.
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Fri Nov 01 2019 13:34:50 GMT-0700 (Pacific Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Wed Dec 11 2019 18:38:20 GMT-0800 (PST)
 </footer>
 
 <script> prettyPrint(); </script>
