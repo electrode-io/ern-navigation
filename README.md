@@ -90,6 +90,8 @@ Check out our [Electode Native Navigation Blog Post](https://medium.com/walmartl
 <dd></dd>
 <dt><a href="#LeftButton">LeftButton</a> : <code>Object</code></dt>
 <dd></dd>
+<dt><a href="#NavigationEvent">NavigationEvent</a> : <code>Object</code></dt>
+<dd></dd>
 </dl>
 
 <a name="AppNavigator"></a>
@@ -161,6 +163,8 @@ Register all screens.
         * [.getAppNavigator()](#Component.getAppNavigator) ⇒ [<code>AppNavigator</code>](#AppNavigator)
         * *[.getDynamicTitle(jsonPayload)](#Component.getDynamicTitle)*
         * *[.onNavButtonPress(buttonId)](#Component.onNavButtonPress)*
+        * *[.onFocus()](#Component.onFocus)*
+        * *[.onBlur()](#Component.onBlur)*
 
 <a name="new_Component_new"></a>
 
@@ -341,6 +345,18 @@ Must be overriden in subclasses.
 | --- | --- | --- |
 | buttonId | <code>string</code> | The ID of the button which was pressed. |
 
+<a name="Component.onFocus"></a>
+
+### *Component.onFocus()*
+Handle focus events.
+
+**Kind**: static abstract method of [<code>Component</code>](#Component)  
+<a name="Component.onBlur"></a>
+
+### *Component.onBlur()*
+Handle blur events.
+
+**Kind**: static abstract method of [<code>Component</code>](#Component)  
 <a name="AppNavigatorOptions"></a>
 
 ## AppNavigatorOptions : <code>Object</code>
@@ -389,6 +405,18 @@ Must be overriden in subclasses.
 | title | <code>string</code> | The title for the button (iOS only). |
 | id | <code>string</code> | The ID of the button; will be used in header button events.  If set, the press event must be handled on the Javascript side, as native will no longer handle the back press.  Cannot contain '.'. |
 | accessibilityLabel | <code>string</code> | The text to read out with screen-reader technology. |
+
+<a name="NavigationEvent"></a>
+
+## NavigationEvent : <code>Object</code>
+**Kind**: global typedef  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| eventType | <code>&#x27;BUTTON\_CLICK&#x27;</code> \| <code>&#x27;DID\_FOCUS&#x27;</code> \| <code>&#x27;DID\_BLUR&#x27;</code> | The type of the event. |
+| viewId | <code>string</code> | The UUID for the view on which the event was fired. |
+| jsonPayload | <code>string</code> | The payload for the event as stringified JSON. |
 
 
 * * *

@@ -95,6 +95,13 @@ import AppNavigator from './app-navigator';
  * @property {?string} accessibilityLabel - The text to read out with screen-reader technology.
  */
 
+/**
+ * @typedef {Object} NavigationEvent
+ * @property {('BUTTON_CLICK' | 'DID_FOCUS' | 'DID_BLUR')} eventType - The type of the event.
+ * @property {string} viewId - The UUID for the view on which the event was fired.
+ * @property {?string} jsonPayload - The payload for the event as stringified JSON.
+ */
+
 export const errors = {
   invalidAppNavigator: new Error(
     'The appNavigator has not been set or is not a valid instance of AppNavigator.  Internal navigation is not available.',
@@ -120,10 +127,11 @@ class Component extends React.Component {
 
   constructor(props) {
     super(props);
+    this.viewId = this.props.viewId;
     this.jsonProps = props.jsonPayload ? JSON.parse(props.jsonPayload) : {};
-    if (!this.headerListener) {
-      this.headerListener = EnNavigationApi.events().addOnNavButtonClickEventListener(
-        this.constructor._handleNavButtonPress.bind(this),
+    if (this.viewId &amp;&amp; !this.headerListener) {
+      this.headerListener = EnNavigationApi.events().addNavEventEventListener(
+        this.constructor._handleNavEvent.bind(this),
       );
     }
     if (this.constructor.autoReset) {
@@ -133,9 +141,7 @@ class Component extends React.Component {
 
   componentWillUnmount() {
     if (this.headerListener) {
-      EnNavigationApi.events().removeOnNavButtonClickEventListener(
-        this.headerListener,
-      );
+      EnNavigationApi.events().removeNavEventEventListener(this.headerListener);
     }
   }
 
@@ -194,83 +200,78 @@ class Component extends React.Component {
   }
 
   /**
-   * Get an unlocalized version of a button.
+   * Dispatch events for this component.  This is called automatically whenever an event
+   * is fired by the OnNavEventEventListener.
    *
    * @private
-   * @param {string} buttonId - The ID of the {@link Button} to unlocalize.
-   * @example
-   * // returns 'ButtonIdentifier'
-   * NavigationBar._unlocalizeButtonId('RegisteredRoute.ButtonIdenfifier')
+   * @param {NavigationEvent} event - The navigation event.
    */
-  static _unlocalizeButtonId(buttonId) {
-    return buttonId.substring(this.route.length + 1);
-  }
-
-  /**
-   * Determine whether to dispatch an &lt;code>onNavButtonPress&lt;/code> event for a given buttonId.
-   *
-   * @private
-   * @param {string} buttonId - The ID of the {@link Button}.
-   */
-  static _shouldDispatchButtonPressEvent(buttonId) {
-    const lastDot = buttonId.lastIndexOf('.');
-    const buttonRoute = lastDot > -1 ? buttonId.substring(0, lastDot) : '';
-    return buttonRoute === this.getRegisteredRoute();
-  }
-
-  /**
-   * Make a call to &lt;code>onNavButtonPress(buttonId)&lt;/code> (if available) whenever a button is
-   * pressed in the navigation bar.  This is called automatically whenever an event
-   * is fired by the OnNavButtonClickEventListener.
-   *
-   * If a subclassed instance contains the &lt;code>onNavButtonPress&lt;/code> method, that will be
-   * called, otherwise the class's static method will be called.
-   *
-   * @private
-   * @param {string} buttonId - The ID of the {@link Button} that was pressed.
-   */
-  static _handleNavButtonPress(buttonId) {
-    if (this.constructor._shouldDispatchButtonPressEvent(buttonId)) {
-      const handler =
-        this.onNavButtonPress || this.constructor.onNavButtonPress;
-      if (handler) {
-        handler.bind(this)(this.constructor._unlocalizeButtonId(buttonId));
+  static _handleNavEvent(event) {
+    if (event &amp;&amp; event.viewId === this.viewId) {
+      const payload = event.jsonPayload ? JSON.parse(event.jsonPayload) : {};
+      switch (event.eventType) {
+        case 'BUTTON_CLICK':
+          this.constructor._handleButtonEvent.bind(this)(payload);
+          break;
+        case 'DID_FOCUS':
+          this.constructor._handleFocusEvent.bind(this)(payload);
+          break;
+        case 'DID_BLUR':
+          this.constructor._handleBlurEvent.bind(this)(payload);
+          break;
+        default:
+          console.warn('Received invalid event: ', event);
+          break;
       }
     }
   }
 
   /**
-   * Get a localized version of the navigation bar for the given route.
+   * Make a call to &lt;code>onNavButtonPress(buttonId)&lt;/code> (if available) whenever a button is
+   * pressed in the navigation bar.  This is called automatically whenever an event
+   * is fired by the OnNavEventEventListener.
+   *
+   * If a subclassed instance contains the &lt;code>onNavButtonPress&lt;/code> method, that will be
+   * called on button press events, otherwise the class's static method will be called.
    *
    * @private
-   * @instance
-   * @param {string} routeName - The name of the current route.
-   * @param {NavigationBar} navigationBar - The {@link NavigationBar} object to localize.
-   * @returns {NavigationBar} A {@link NavigationBar} object with the IDs of buttons updated to
-   * pertain to the given route.
+   * @param {string} payload - The stringified JSON payload for the event.
    */
-  static _localizeNavigationBar(routeName, navigationBar) {
-    if (!navigationBar) {
-      return {};
+  static _handleButtonEvent(payload) {
+    const handler = this.onNavButtonPress || this.constructor.onNavButtonPress;
+    if (handler) {
+      handler.bind(this)(payload.id);
     }
-    return {
-      ...navigationBar,
-      leftButton: navigationBar.leftButton
-        ? {
-            ...navigationBar.leftButton,
-            id: navigationBar.leftButton.id
-              ? `${routeName}.${navigationBar.leftButton.id}`
-              : undefined,
-          }
-        : undefined,
-      buttons: navigationBar.buttons
-        ? navigationBar.buttons.map(button => ({
-            ...button,
-            location: 'right',
-            id: `${routeName}.${button.id}`,
-          }))
-        : undefined,
-    };
+  }
+
+  /**
+   * Make a call to &lt;code>onFocus()&lt;/code> (if available) whenever this view receives focus.
+   *
+   * If a subclassed instance contains the &lt;code>onFocus&lt;/code> method, it will be
+   * called on focus events.
+   *
+   * @private
+   * @param {string} payload - The stringified JSON payload for the event.
+   */
+  static _handleFocusEvent(payload) {
+    if (this.onFocus) {
+      this.onFocus.bind(this)();
+    }
+  }
+
+  /**
+   * Make a call to &lt;code>onBlur()&lt;/code> (if available) whenever this view loses focus.
+   *
+   * If a subclassed instance contains the &lt;code>onBlur&lt;/code> method, it will be
+   * called on blur events.
+   *
+   * @private
+   * @param {string} payload - The stringified JSON payload for the event.
+   */
+  static _handleBlurEvent(payload) {
+    if (this.onBlur) {
+      this.onBlur.bind(this)();
+    }
   }
 
   /**
@@ -288,22 +289,6 @@ class Component extends React.Component {
         this.getDynamicTitle(jsonPayload) ||
         (this.navigationOptions || {}).title,
     };
-  }
-
-  /**
-   * Get a localized version of the navigation bar for this route.
-   *
-   * @private
-   * @instance
-   * @param {Object} jsonPayload - The JSON payload for the current route.
-   * @returns {NavigationBar} A {@link NavigationBar} object with the IDs of buttons updated to
-   * pertain to the current route.
-   */
-  static _getLocalizedNavigationBar(jsonPayload) {
-    return this._localizeNavigationBar(
-      this.route,
-      this._getNavigationBar(jsonPayload),
-    );
   }
 
   /**
@@ -334,6 +319,22 @@ class Component extends React.Component {
   }
 
   /**
+   * Handle focus events.
+   *
+   * @abstract
+   * @static
+   */
+  static onFocus() {}
+
+  /**
+   * Handle blur events.
+   *
+   * @abstract
+   * @static
+   */
+  static onBlur() {}
+
+  /**
    * Reset the navigation bar for the current screen to its defaults.
    *
    * @async
@@ -343,10 +344,6 @@ class Component extends React.Component {
    */
   resetNavigationBar() {
     return this.updateNavigationBar(this.constructor._getNavigationBar());
-    // return EnNavigationApi.requests().update({
-    //   path: this.constructor.route,
-    //   navigationBar: this.constructor._getLocalizedNavigationBar(),
-    // });
   }
 
   /**
@@ -359,16 +356,9 @@ class Component extends React.Component {
    * update the navigation bar.
    */
   updateNavigationBar(navigationBar) {
-    const {
-      overlay,
-      ...localizedNavigationBar
-    } = this.constructor._localizeNavigationBar(
-      this.constructor.route,
-      navigationBar,
-    );
     const routePayload = {
       path: this.constructor.route,
-      navigationBar: localizedNavigationBar,
+      navigationBar,
     };
     return EnNavigationApi.requests().update(routePayload);
   }
@@ -423,9 +413,7 @@ class Component extends React.Component {
     }
 
     const nav = this.constructor.getAppNavigator().screens[screenName];
-    const {overlay, ...navigationBar} = nav._getLocalizedNavigationBar(
-      jsonPayload,
-    );
+    const {overlay, ...navigationBar} = nav._getNavigationBar(jsonPayload);
     const routePayload = {
       path: nav.getRegisteredRoute(),
       overlay,
@@ -520,7 +508,7 @@ export default Component;
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Wed Dec 11 2019 18:38:20 GMT-0800 (PST)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Fri Jan 31 2020 17:10:25 GMT-0800 (PST)
 </footer>
 
 <script> prettyPrint(); </script>
