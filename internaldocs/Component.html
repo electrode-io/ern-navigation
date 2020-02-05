@@ -280,166 +280,6 @@ export default MainScreenComponent extends Component {
     
 
     
-    <h4 class="name" id="._getLocalizedNavigationBar"><span class="type-signature">(private, static) </span>_getLocalizedNavigationBar<span class="signature">(jsonPayload)</span><span class="type-signature"> &rarr; {<a href="global.html#NavigationBar">NavigationBar</a>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Get a localized version of the navigation bar for this route.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>jsonPayload</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The JSON payload for the current route.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line274">line 274</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    A <a href="global.html#NavigationBar">NavigationBar</a> object with the IDs of buttons updated to
-pertain to the current route.
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="global.html#NavigationBar">NavigationBar</a></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
     <h4 class="name" id="._getNavigationBar"><span class="type-signature">(private, static) </span>_getNavigationBar<span class="signature">(jsonPayload)</span><span class="type-signature"> &rarr; {<a href="global.html#NavigationBar">NavigationBar</a>}</span></h4>
     
 
@@ -541,7 +381,7 @@ pertain to the current route.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line256">line 256</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line257">line 257</a>
     </li></ul></dd>
     
 
@@ -599,7 +439,147 @@ pertain to the current route.
     
 
     
-    <h4 class="name" id="._handleNavButtonPress"><span class="type-signature">(private, static) </span>_handleNavButtonPress<span class="signature">(buttonId)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="._handleBlurEvent"><span class="type-signature">(private, static) </span>_handleBlurEvent<span class="signature">(payload)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Make a call to <code>onBlur()</code> (if available) whenever this view loses focus.
+
+If a subclassed instance contains the <code>onBlur</code> method, it will be
+called on blur events.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>payload</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The stringified JSON payload for the event.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line243">line 243</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="._handleButtonEvent"><span class="type-signature">(private, static) </span>_handleButtonEvent<span class="signature">(payload)</span><span class="type-signature"></span></h4>
     
 
     
@@ -609,10 +589,10 @@ pertain to the current route.
 <div class="description">
     Make a call to <code>onNavButtonPress(buttonId)</code> (if available) whenever a button is
 pressed in the navigation bar.  This is called automatically whenever an event
-is fired by the OnNavButtonClickEventListener.
+is fired by the OnNavEventEventListener.
 
 If a subclassed instance contains the <code>onNavButtonPress</code> method, that will be
-called, otherwise the class's static method will be called.
+called on button press events, otherwise the class's static method will be called.
 </div>
 
 
@@ -648,7 +628,7 @@ called, otherwise the class's static method will be called.
 
         <tr>
             
-                <td class="name"><code>buttonId</code></td>
+                <td class="name"><code>payload</code></td>
             
 
             <td class="type">
@@ -664,7 +644,7 @@ called, otherwise the class's static method will be called.
 
             
 
-            <td class="description last">The ID of the <a href="global.html#Button">Button</a> that was pressed.</td>
+            <td class="description last">The stringified JSON payload for the event.</td>
         </tr>
 
     
@@ -705,7 +685,7 @@ called, otherwise the class's static method will be called.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line204">line 204</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line212">line 212</a>
     </li></ul></dd>
     
 
@@ -741,7 +721,7 @@ called, otherwise the class's static method will be called.
     
 
     
-    <h4 class="name" id="._localizeNavigationBar"><span class="type-signature">(private, static) </span>_localizeNavigationBar<span class="signature">(routeName, navigationBar)</span><span class="type-signature"> &rarr; {<a href="global.html#NavigationBar">NavigationBar</a>}</span></h4>
+    <h4 class="name" id="._handleFocusEvent"><span class="type-signature">(private, static) </span>_handleFocusEvent<span class="signature">(payload)</span><span class="type-signature"></span></h4>
     
 
     
@@ -749,7 +729,10 @@ called, otherwise the class's static method will be called.
 
 
 <div class="description">
-    Get a localized version of the navigation bar for the given route.
+    Make a call to <code>onFocus()</code> (if available) whenever this view receives focus.
+
+If a subclassed instance contains the <code>onFocus</code> method, it will be
+called on focus events.
 </div>
 
 
@@ -785,7 +768,7 @@ called, otherwise the class's static method will be called.
 
         <tr>
             
-                <td class="name"><code>routeName</code></td>
+                <td class="name"><code>payload</code></td>
             
 
             <td class="type">
@@ -801,30 +784,7 @@ called, otherwise the class's static method will be called.
 
             
 
-            <td class="description last">The name of the current route.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>navigationBar</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#NavigationBar">NavigationBar</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The <a href="global.html#NavigationBar">NavigationBar</a> object to localize.</td>
+            <td class="description last">The stringified JSON payload for the event.</td>
         </tr>
 
     
@@ -865,7 +825,7 @@ called, otherwise the class's static method will be called.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line224">line 224</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line228">line 228</a>
     </li></ul></dd>
     
 
@@ -890,29 +850,6 @@ called, otherwise the class's static method will be called.
 
 
 
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    A <a href="global.html#NavigationBar">NavigationBar</a> object with the IDs of buttons updated to
-pertain to the given route.
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="global.html#NavigationBar">NavigationBar</a></span>
-
-
-    </dd>
-</dl>
-
-    
 
 
 
@@ -924,7 +861,7 @@ pertain to the given route.
     
 
     
-    <h4 class="name" id="._shouldDispatchButtonPressEvent"><span class="type-signature">(private, static) </span>_shouldDispatchButtonPressEvent<span class="signature">(buttonId)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="._handleNavEvent"><span class="type-signature">(private, static) </span>_handleNavEvent<span class="signature">(event)</span><span class="type-signature"></span></h4>
     
 
     
@@ -932,7 +869,8 @@ pertain to the given route.
 
 
 <div class="description">
-    Determine whether to dispatch an <code>onNavButtonPress</code> event for a given buttonId.
+    Dispatch events for this component.  This is called automatically whenever an event
+is fired by the OnNavEventEventListener.
 </div>
 
 
@@ -968,13 +906,13 @@ pertain to the given route.
 
         <tr>
             
-                <td class="name"><code>buttonId</code></td>
+                <td class="name"><code>event</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type"><a href="global.html#NavigationEvent">NavigationEvent</a></span>
 
 
             
@@ -984,7 +922,7 @@ pertain to the given route.
 
             
 
-            <td class="description last">The ID of the <a href="global.html#Button">Button</a>.</td>
+            <td class="description last">The navigation event.</td>
         </tr>
 
     
@@ -1025,7 +963,7 @@ pertain to the given route.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line187">line 187</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line181">line 181</a>
     </li></ul></dd>
     
 
@@ -1052,149 +990,6 @@ pertain to the given route.
 
 
 
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="._unlocalizeButtonId"><span class="type-signature">(private, static) </span>_unlocalizeButtonId<span class="signature">(buttonId)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Get an unlocalized version of a button.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>buttonId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The ID of the <a href="global.html#Button">Button</a> to unlocalize.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line177">line 177</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>// returns 'ButtonIdentifier'
-NavigationBar._unlocalizeButtonId('RegisteredRoute.ButtonIdenfifier')</code></pre>
 
 
 
@@ -1256,7 +1051,7 @@ NavigationBar._unlocalizeButtonId('RegisteredRoute.ButtonIdenfifier')</code></pr
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line164">line 164</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line170">line 170</a>
     </li></ul></dd>
     
 
@@ -1416,7 +1211,7 @@ Must be overriden in subclasses.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line289">line 289</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line274">line 274</a>
     </li></ul></dd>
     
 
@@ -1504,7 +1299,7 @@ Must be overriden in subclasses.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line146">line 146</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line152">line 152</a>
     </li></ul></dd>
     
 
@@ -1551,6 +1346,182 @@ Must be overriden in subclasses.
 </dl>
 
     
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".onBlur"><span class="type-signature">(abstract, static) </span>onBlur<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Handle blur events.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line307">line 307</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".onFocus"><span class="type-signature">(abstract, static) </span>onFocus<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Handle focus events.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line299">line 299</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1664,7 +1635,7 @@ Must be overriden in subclasses.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line299">line 299</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line284">line 284</a>
     </li></ul></dd>
     
 
@@ -1801,7 +1772,7 @@ Must be overriden in subclasses.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line155">line 155</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line161">line 161</a>
     </li></ul></dd>
     
 
@@ -1938,7 +1909,7 @@ Must be overriden in subclasses.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line128">line 128</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line134">line 134</a>
     </li></ul></dd>
     
 
@@ -2026,7 +1997,7 @@ Must be overriden in subclasses.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line459">line 459</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line447">line 447</a>
     </li></ul></dd>
     
 
@@ -2187,7 +2158,7 @@ should be defined in the initial <a href="AppNavigator.html">AppNavigator</a> se
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line420">line 420</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line408">line 408</a>
     </li></ul></dd>
     
 
@@ -2360,7 +2331,7 @@ controller that launched the flow.</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line473">line 473</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line461">line 461</a>
     </li></ul></dd>
     
 
@@ -2520,7 +2491,7 @@ finish the current flow.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line357">line 357</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line347">line 347</a>
     </li></ul></dd>
     
 
@@ -2725,7 +2696,7 @@ screen.</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line373">line 373</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line363">line 363</a>
     </li></ul></dd>
     
 
@@ -2836,7 +2807,7 @@ navigate to the new screen.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line316">line 316</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line317">line 317</a>
     </li></ul></dd>
     
 
@@ -2996,7 +2967,7 @@ reset the navigation bar.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line333">line 333</a>
+        <a href="navigation-component.js.html">navigation-component.js</a>, <a href="navigation-component.js.html#line330">line 330</a>
     </li></ul></dd>
     
 
@@ -3071,7 +3042,7 @@ update the navigation bar.
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Wed Dec 11 2019 18:38:20 GMT-0800 (PST)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Fri Jan 31 2020 17:10:25 GMT-0800 (PST)
 </footer>
 
 <script> prettyPrint(); </script>
