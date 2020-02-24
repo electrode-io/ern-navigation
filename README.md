@@ -28,7 +28,6 @@ export default MainScreenComponent extends Component {
     buttons: [{
       icon: Image.resolveAssetSource(exitIcon).uri,
       id: 'exit',
-      location: 'right',
       accessibilityLabel: 'Exit this app'
     }]
   }
@@ -186,7 +185,6 @@ export default MainScreenComponent extends Component {
     buttons: [{
       icon: Image.resolveAssetSource(exitIcon).uri,
       id: 'exit',
-      location: 'right',
       accessibilityLabel: 'Exit this app'
     }]
   }
