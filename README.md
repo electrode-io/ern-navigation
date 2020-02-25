@@ -1,3 +1,7 @@
+# ern-navigation
+
+[![ci][1]][2]
+
 ## Getting Started
 
 ### Prerequisites
@@ -420,3 +424,6 @@ Handle blur events.
 * * *
 
 &copy; 2019 WalmartLabs
+
+[1]: https://github.com/electrode-io/ern-navigation/workflows/ci/badge.svg
+[2]: https://github.com/electrode-io/ern-navigation/actions

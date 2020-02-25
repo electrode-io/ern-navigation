@@ -1,4 +1,4 @@
-name: main
+name: ci
 on: [push, pull_request]
 jobs:
   build:
@@ -12,7 +12,5 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Install dependencies
-        run: yarn
-      - name: Lint code
-        run: yarn lint
+      - run: yarn
+      - run: yarn lint
