@@ -110,7 +110,7 @@ export const errors = {
     'No valid screens have been set.  Internal navigation is not available.',
   ),
   noScreenName: new Error('The screenName is required'),
-  invalidScreenName: screenName =>
+  invalidScreenName: (screenName) =>
     new Error(`'${screenName}' is not a valid screen name.`),
 };
 
@@ -164,9 +164,7 @@ class Component extends React.Component {
       this.route = route;
     } else {
       console.warn(
-        `This component has already been registered as '${
-          this.route
-        }'.  Not re-registering as '${route}'.`,
+        `This component has already been registered as '${this.route}'.  Not re-registering as '${route}'.`,
       );
     }
   }
@@ -311,9 +309,7 @@ class Component extends React.Component {
    */
   static onNavButtonPress(buttonId) {
     console.warn(
-      `\`onNavButtonPress(buttonId)\` was not overriden in ${
-        this.constructor.name
-      }, but a button press event was fired.`,
+      `\`onNavButtonPress(buttonId)\` was not overriden in ${this.constructor.name}, but a button press event was fired.`,
       {buttonId},
     );
   }
