@@ -315,7 +315,9 @@ class Component extends React.Component {
    * reset the navigation bar.
    */
   resetNavigationBar() {
-    return this.updateNavigationBar(this.constructor._getNavigationBar());
+    return this.updateNavigationBar(
+      this.constructor._getNavigationBar(this.jsonProps),
+    );
   }
 
   /**

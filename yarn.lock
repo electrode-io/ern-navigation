@@ -2015,17 +2015,24 @@ envinfo@^7.1.0:
   resolved "https://registry.yarnpkg.com/envinfo/-/envinfo-7.4.0.tgz#bef4ece9e717423aaf0c3584651430b735ad6630"
   integrity sha512-FdDfnWnCVjxTTpWE3d6Jgh5JDIA3Cw7LCgpM/pI7kK1ORkjaqI2r6NqQ+ln2j0dfpgxY00AWieSvtkiZQKIItA==
 
-ernnavigation-api-impl-native@^1.2.2:
-  version "1.2.12"
-  resolved "https://registry.yarnpkg.com/ernnavigation-api-impl-native/-/ernnavigation-api-impl-native-1.2.12.tgz#dbc223865eb39aa9e1bdf4b6642449a78ffc66c7"
-  integrity sha512-qKFXTxvrxOaPUbfxxpoVePm+aDIvoZYzVyulFzdL6Kh77+EiP7KaI9Efz/msELqrwHL7Gseak9nCQCimVqIg9w==
+ernnavigation-api-impl-native@^1.3.18:
+  version "1.3.25"
+  resolved "https://registry.yarnpkg.com/ernnavigation-api-impl-native/-/ernnavigation-api-impl-native-1.3.25.tgz#607ef0196803ed7cb1185caeb2af5ba4161823f4"
+  integrity sha512-NQDdBQNjth6UsuB+t20Tkgqi4tvByVlCMdmHq0iMFvtp2mcLEb1dTWG6N/RBXKl5B55pvn1l3yfP6sHhApTdQw==
   dependencies:
-    ernnavigation-api "1.1.0"
+    ernnavigation-api "1.2.1"
 
-ernnavigation-api@1.1.0, ernnavigation-api@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/ernnavigation-api/-/ernnavigation-api-1.1.0.tgz#87f2b7b649c55fdde69f4c4717fc95409289214d"
-  integrity sha512-IAQVOHiBT8bJDU9SYSa5hkvk2Gj+Fp3E1GgIMokR8h6aaDgk+ZtV6EYfW1P6IA+jvnwaICnNeDlABS1VraZU5Q==
+ernnavigation-api@1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/ernnavigation-api/-/ernnavigation-api-1.2.1.tgz#5e44cd4dcfc89544e2283d9e40ab1be18d80e243"
+  integrity sha512-Kyv63hJ+tb0RsXnX7iEB4xtxdgJTKD7ksqSP7L4oeCBfLDTOtBpy63VUywcjW7WUgZ3Bcyxr1xiuPpASw6k3pA==
+  dependencies:
+    react-native-electrode-bridge "1.5.x"
+
+ernnavigation-api@^1.2.5:
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/ernnavigation-api/-/ernnavigation-api-1.2.5.tgz#47bf77710a73291b7310bf7d6a42ca95f5031686"
+  integrity sha512-uwueWtHi75qpnnuJk+3PMUL1Jo4NJpSv9e0zLtsoIaVRaZr+rBGZsmutY3xhaBCuzUAjZmvWn7C9C50ilclL0g==
   dependencies:
     react-native-electrode-bridge "1.5.x"
 
