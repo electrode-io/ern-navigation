@@ -5,7 +5,7 @@
   "description": "Components and API for Electrode Native Navigation",
   "main": "src/index.js",
   "scripts": {
-    "docs": "rm -rf docs/ internaldocs/ && jsdoc ./src -r -d docs/ && jsdoc ./src -r -p -d internaldocs/ && jsdoc2md src/components/*.js --template templates/README.hbs > README.md",
+    "docs": "rm -rf docs/ internaldocs/ && jsdoc src -r  -c jsdoc.js -d docs && jsdoc src -r  -c jsdoc.js -p -d internaldocs && jsdoc2md src/components/*.js --template templates/README.hbs > README.md",
     "lint": "eslint ."
   },
   "repository": {
@@ -34,11 +34,11 @@
   "devDependencies": {
     "@babel/core": "^7.5.4",
     "@babel/runtime": "^7.5.4",
-    "@react-native-community/eslint-config": "^0.0.5",
+    "@react-native-community/eslint-config": "^1.0.0",
     "babel-jest": "^24.8.0",
-    "eslint": "^6.6.0",
+    "eslint": "^6.8.0",
     "jsdoc": "^3.6.3",
-    "jsdoc-to-markdown": "^5.0.0",
+    "jsdoc-to-markdown": "^5.0.3",
     "metro-react-native-babel-preset": "^0.55.0",
     "react": "16.8.6",
     "react-native": "0.60.5"

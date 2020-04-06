@@ -28,7 +28,7 @@ class AppNavigator {
       throw new Error('screens parameter must be a non-empty object');
     }
     let firstScreen = Object.keys(screens)[0];
-    Object.keys(screens).forEach(screen => {
+    Object.keys(screens).forEach((screen) => {
       if (!screen || !screens[screen]) {
         throw new Error('each screen must be defined');
       }
@@ -48,7 +48,7 @@ class AppNavigator {
    * @param {!string} miniappName - The name of the miniapp.
    */
   registerAll(miniappName) {
-    Object.keys(this.screens).forEach(screen => {
+    Object.keys(this.screens).forEach((screen) => {
       const route =
         screen === this.options.initialScreen
           ? miniappName
