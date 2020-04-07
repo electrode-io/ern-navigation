@@ -69,7 +69,7 @@ import AppNavigator from './app-navigator';
 
 /**
  * @typedef {Object} NavigationEvent
- * @property {('BUTTON_CLICK' | 'DID_FOCUS' | 'DID_BLUR')} eventType - The type of the event.
+ * @property {('BUTTON_CLICK' | 'DID_FOCUS' | 'DID_BLUR' | 'APP_DATA')} eventType - The type of the event.
  * @property {string} viewId - The UUID for the view on which the event was fired.
  * @property {?string} jsonPayload - The payload for the event as stringified JSON.
  */
@@ -189,6 +189,9 @@ class Component extends React.Component {
         case 'DID_BLUR':
           this.constructor._handleBlurEvent.bind(this)(payload);
           break;
+        case 'APP_DATA':
+          this.constructor._handleAppDataEvent.bind(this)(payload);
+          break;
         default:
           console.warn('Received invalid event: ', event);
           break;
@@ -241,6 +244,21 @@ class Component extends React.Component {
   static _handleBlurEvent(payload) {
     if (this.onBlur) {
       this.onBlur.bind(this)();
+    }
+  }
+
+  /**
+   * Make a call to <code>onAppData()</code> (if available) whenever this view receives data.
+   *
+   * If a subclassed instance contains the <code>onAppData</code> method, it will be
+   * called on appData events.
+   *
+   * @private
+   * @param {string} payload - The stringified JSON payload for the event.
+   */
+  static _handleAppDataEvent(payload) {
+    if (this.onAppData) {
+      this.onAppData.bind(this)(payload);
     }
   }
 
@@ -301,6 +319,14 @@ class Component extends React.Component {
    * @static
    */
   static onBlur() {}
+
+  /**
+   * Handle appData events.
+   *
+   * @abstract
+   * @static
+   */
+  static onAppData() {}
 
   /**
    * Reset the navigation bar for the current screen to its defaults.
