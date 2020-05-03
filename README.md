@@ -169,6 +169,7 @@ Register all screens.
         * *[.onNavButtonPress(buttonId)](#Component.onNavButtonPress)*
         * *[.onFocus()](#Component.onFocus)*
         * *[.onBlur()](#Component.onBlur)*
+        * *[.onAppData()](#Component.onAppData)*
 
 <a name="new_Component_new"></a>
 
@@ -361,6 +362,12 @@ Handle focus events.
 Handle blur events.
 
 **Kind**: static abstract method of [<code>Component</code>](#Component)  
+<a name="Component.onAppData"></a>
+
+### *Component.onAppData()*
+Handle appData events.
+
+**Kind**: static abstract method of [<code>Component</code>](#Component)  
 <a name="AppNavigatorOptions"></a>
 
 ## AppNavigatorOptions : <code>Object</code>
@@ -418,7 +425,7 @@ Handle blur events.
 
 | Name | Type | Description |
 | --- | --- | --- |
-| eventType | <code>&#x27;BUTTON\_CLICK&#x27;</code> \| <code>&#x27;DID\_FOCUS&#x27;</code> \| <code>&#x27;DID\_BLUR&#x27;</code> | The type of the event. |
+| eventType | <code>&#x27;BUTTON\_CLICK&#x27;</code> \| <code>&#x27;DID\_FOCUS&#x27;</code> \| <code>&#x27;DID\_BLUR&#x27;</code> \| <code>&#x27;APP\_DATA&#x27;</code> | The type of the event. |
 | viewId | <code>string</code> | The UUID for the view on which the event was fired. |
 | jsonPayload | <code>string</code> | The payload for the event as stringified JSON. |
 
