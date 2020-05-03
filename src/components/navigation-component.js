@@ -13,31 +13,35 @@ import AppNavigator from './app-navigator';
  * @property autoReset=true {boolean} - (static) Whether to automatically reset the navigation bar upon component display. (defaults to <code>true</code>)
  * @property navigationOptions {NavigationBar} - (static) The navigation bar for this component.  Defaults to a title of "Untitled" with no right {@link Button}s.
  * @example
- * import { Component } from 'ern-navigation'
- * ...
- * export default MainScreenComponent extends Component {
- *   static displayName = 'Main Screen'
+ * import {Component} from 'ern-navigation';
+ *
+ * export default class MainScreenComponent extends Component {
+ *   static displayName = 'Main Screen';
  *   static autoReset = true;
  *   static navigationOptions = {
  *     title: 'My Application',
- *     buttons: [{
- *       icon: Image.resolveAssetSource(exitIcon).uri,
- *       id: 'exit',
- *       location: 'right',
- *       accessibilityLabel: 'Exit this app'
- *     }]
+ *     buttons: [
+ *       {
+ *         icon: Image.resolveAssetSource(exitIcon).uri,
+ *         id: 'exit',
+ *         location: 'right',
+ *         accessibilityLabel: 'Exit this app',
+ *       },
+ *     ],
+ *   };
+ *
+ *   onNavButtonPress(buttonId) {
+ *     switch (buttonId) {
+ *       case 'exit':
+ *         this.finish();
+ *         break;
+ *       default:
+ *         console.warn(
+ *           `'${buttonId}' not handled in '${MainScreenComponent.getRegisteredRoute()}'`,
+ *         );
+ *         break;
+ *     }
  *   }
- *  onNavButtonPress (buttonId) {
- *    switch (buttonId) {
- *      case 'exit':
- *        this.finish()
- *        break
- *      default:
- *        console.warn(`Screen '${MainScreenComponent.getRegisteredRoute()}' received unmapped button id '${buttonId}'`)
- *        break
- *    }
- *  }
- *   ...
  * }
  */
 
@@ -281,7 +285,7 @@ class Component extends React.Component {
 
   /**
    * Calculate the title for the current route based on the JSON payload.
-   * Must be overriden in subclasses.
+   * Must be overridden in subclasses.
    *
    * @abstract
    * @static
@@ -291,7 +295,7 @@ class Component extends React.Component {
 
   /**
    * Handle button press events.
-   * Must be overriden in subclasses.
+   * Must be overridden in subclasses.
    *
    * @abstract
    * @static
@@ -299,7 +303,7 @@ class Component extends React.Component {
    */
   static onNavButtonPress(buttonId) {
     console.warn(
-      `\`onNavButtonPress(buttonId)\` was not overriden in ${this.constructor.name}, but a button press event was fired.`,
+      `\`onNavButtonPress(buttonId)\` was not overridden in ${this.constructor.name}, but a button press event was fired.`,
       {buttonId},
     );
   }
