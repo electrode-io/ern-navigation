@@ -11,13 +11,15 @@ import {AppRegistry} from 'react-native';
  * @param {Object} screens - The screens to register.
  * @param {Object} options - The navigation options.
  * @example
- * import { AppNavigator } from 'ern-navigation'
- * new AppNavigator({
- *   'MainScreen': MainScreenComponent,
- *   'SecondScreen': SecondScreenComponent
- * }, {
- *   initialScreen: 'MainScreen'
- * }).registerAll('MyMiniApp')
+ * import {AppNavigator} from 'ern-navigation';
+ *
+ * new AppNavigator(
+ *   {
+ *     MainScreen: MainScreenComponent,
+ *     SecondScreen: SecondScreenComponent,
+ *   },
+ *   {initialScreen: 'MainScreen'},
+ * ).registerAll('MyMiniApp');
  */
 class AppNavigator {
   static screens = {};

@@ -6,27 +6,31 @@
 
 ### Prerequisites
 
-- Node.js >= 8
-- NPM >= 3.0
-- Android Studio (for Android apps)
-- Xcode >= 10 (for iOS apps)
-- An <a href="http://www.electrode.io/site/native.html">Electrode Native</a> miniapp
+- All [prerequisites of Electrode Native][3]
+- An Electrode Native [miniapp][4]
 
-### Install as a dependency in your miniapp
+### Installation
 
-```console
-$ npm install --save ern-navigation
+Install `ern-navigation` as a dependency in your miniapp:
+
+```sh
+yarn add ern-navigation
 ```
 
-### Try it out!
+Or `npm install --save ern-navigation`
 
-First, lets create some components to act as the app's different screens.
-Each of these components should extend Electrode Native Navigation's <a href="#Component">Component</a> class, and will need to define a few class properties.  Here's an example:
+### Integration
+
+First, let's create some components to act as the app's different screens.
+Each of these components should extend Electrode Native Navigation's
+<a href="#Component">Component</a> class, and will need to define a few class
+properties. Here's an example:
+
 ```js
-import { Component } from 'ern-navigation'
-...
-export default MainScreenComponent extends Component {
-  static displayName = 'Main Screen'
+import {Component} from 'ern-navigation';
+
+export default class MainScreenComponent extends Component {
+  static displayName = 'Main Screen';
   static navigationOptions = {
     title: 'My Application',
     buttons: [{
@@ -35,42 +39,52 @@ export default MainScreenComponent extends Component {
       location: 'right',
       accessibilityLabel: 'Exit this app'
     }]
+  };
+  onNavButtonPress (buttonId) {
+    switch (buttonId) {
+      case 'exit':
+        this.finish();
+        break;
+      default:
+        console.warn(
+          `'${buttonId}' not handled in '${MainScreenComponent.getRegisteredRoute()}'`,
+        );
+        break;
+    }
   }
- onNavButtonPress (buttonId) {
-   switch (buttonId) {
-     case 'exit':
-       this.finish()
-       break
-     default:
-       console.warn(`Screen '${MainScreenComponent.getRegisteredRoute()}' received unmapped button id '${buttonId}'`)
-       break
-   }
- }
-  ...
 }
 ```
 
-Once all of the screen components have been created, they will need to be registered using Electrode Native Navigation's <a href="#AppNavigator">AppNavigator</a> class, like this:
+Once all screen components have been created, they will need to be registered
+using Electrode Native Navigation's <a href="#AppNavigator">AppNavigator</a>
+class, like this:
 
 ```js
-import { AppNavigator } from 'ern-navigation'
-...
+import {AppNavigator} from 'ern-navigation';
+
 new AppNavigator({
   'MainScreen': MainScreenComponent,
-  'SecondScreen': SecondScreenComponent
-  ...
+  'SecondScreen': SecondScreenComponent,
+  // ...
 }, {
   initialScreen: 'MainScreen'
-}).registerAll('MyMiniApp')
+}).registerAll('MyMiniApp');
 ```
 
-In this example, the `MainScreenComponent` and `SecondScreenComponent` are referred to as `MainScreen` and `SecondScreen`, respectively, whenever any navigation is performed.  From inside any of the screen components, calling `this.navigateInternal(screenName)` will navigate to the specified registered screen.
+In this example, the `MainScreenComponent` and `SecondScreenComponent` are
+referred to as `MainScreen` and `SecondScreen`, respectively, whenever any
+navigation is performed. From inside any of the screen components, calling
+`this.navigateInternal(screenName)` will navigate to the specified registered
+screen.
 
 ## Example
-The [MoviesReloaded](https://github.com/electrode-io/movies-reloaded-miniapp) miniapp outlines the different mechanisms that are provided to you by Electrode Native Navigation.
+
+The [movies-reloaded][5] miniapp outlines the different mechanisms that are
+provided to you by Electrode Native Navigation.
 
 ## Further Reading
-Check out our [Electode Native Navigation Blog Post](https://medium.com/walmartlabs/electrode-native-navigation-576297fbcb3d).
+
+Check out our [Electrode Native Navigation Blog Post][6].
 
 ## Documentation
 
@@ -118,13 +132,15 @@ Check out our [Electode Native Navigation Blog Post](https://medium.com/walmartl
 
 **Example**  
 ```js
-import { AppNavigator } from 'ern-navigation'
-new AppNavigator({
-  'MainScreen': MainScreenComponent,
-  'SecondScreen': SecondScreenComponent
-}, {
-  initialScreen: 'MainScreen'
-}).registerAll('MyMiniApp')
+import {AppNavigator} from 'ern-navigation';
+
+new AppNavigator(
+  {
+    MainScreen: MainScreenComponent,
+    SecondScreen: SecondScreenComponent,
+  },
+  {initialScreen: 'MainScreen'},
+).registerAll('MyMiniApp');
 ```
 <a name="AppNavigator+registerAll"></a>
 
@@ -169,6 +185,7 @@ Register all screens.
         * *[.onNavButtonPress(buttonId)](#Component.onNavButtonPress)*
         * *[.onFocus()](#Component.onFocus)*
         * *[.onBlur()](#Component.onBlur)*
+        * *[.onAppData()](#Component.onAppData)*
 
 <a name="new_Component_new"></a>
 
@@ -180,31 +197,35 @@ appropriate super method - <code>super.componentWillUnmount()</code> or
 
 **Example**  
 ```js
-import { Component } from 'ern-navigation'
-...
-export default MainScreenComponent extends Component {
-  static displayName = 'Main Screen'
+import {Component} from 'ern-navigation';
+
+export default class MainScreenComponent extends Component {
+  static displayName = 'Main Screen';
   static autoReset = true;
   static navigationOptions = {
     title: 'My Application',
-    buttons: [{
-      icon: Image.resolveAssetSource(exitIcon).uri,
-      id: 'exit',
-      location: 'right',
-      accessibilityLabel: 'Exit this app'
-    }]
+    buttons: [
+      {
+        icon: Image.resolveAssetSource(exitIcon).uri,
+        id: 'exit',
+        location: 'right',
+        accessibilityLabel: 'Exit this app',
+      },
+    ],
+  };
+
+  onNavButtonPress(buttonId) {
+    switch (buttonId) {
+      case 'exit':
+        this.finish();
+        break;
+      default:
+        console.warn(
+          `'${buttonId}' not handled in '${MainScreenComponent.getRegisteredRoute()}'`,
+        );
+        break;
+    }
   }
- onNavButtonPress (buttonId) {
-   switch (buttonId) {
-     case 'exit':
-       this.finish()
-       break
-     default:
-       console.warn(`Screen '${MainScreenComponent.getRegisteredRoute()}' received unmapped button id '${buttonId}'`)
-       break
-   }
- }
-  ...
 }
 ```
 <a name="Component+resetNavigationBar"></a>
@@ -329,7 +350,7 @@ Get the [AppNavigator](#AppNavigator) for this component.
 
 ### *Component.getDynamicTitle(jsonPayload)*
 Calculate the title for the current route based on the JSON payload.
-Must be overriden in subclasses.
+Must be overridden in subclasses.
 
 **Kind**: static abstract method of [<code>Component</code>](#Component)  
 
@@ -341,7 +362,7 @@ Must be overriden in subclasses.
 
 ### *Component.onNavButtonPress(buttonId)*
 Handle button press events.
-Must be overriden in subclasses.
+Must be overridden in subclasses.
 
 **Kind**: static abstract method of [<code>Component</code>](#Component)  
 
@@ -359,6 +380,12 @@ Handle focus events.
 
 ### *Component.onBlur()*
 Handle blur events.
+
+**Kind**: static abstract method of [<code>Component</code>](#Component)  
+<a name="Component.onAppData"></a>
+
+### *Component.onAppData()*
+Handle appData events.
 
 **Kind**: static abstract method of [<code>Component</code>](#Component)  
 <a name="AppNavigatorOptions"></a>
@@ -418,7 +445,7 @@ Handle blur events.
 
 | Name | Type | Description |
 | --- | --- | --- |
-| eventType | <code>&#x27;BUTTON\_CLICK&#x27;</code> \| <code>&#x27;DID\_FOCUS&#x27;</code> \| <code>&#x27;DID\_BLUR&#x27;</code> | The type of the event. |
+| eventType | <code>&#x27;BUTTON\_CLICK&#x27;</code> \| <code>&#x27;DID\_FOCUS&#x27;</code> \| <code>&#x27;DID\_BLUR&#x27;</code> \| <code>&#x27;APP\_DATA&#x27;</code> | The type of the event. |
 | viewId | <code>string</code> | The UUID for the view on which the event was fired. |
 | jsonPayload | <code>string</code> | The payload for the event as stringified JSON. |
 
@@ -429,3 +456,7 @@ Handle blur events.
 
 [1]: https://github.com/electrode-io/ern-navigation/workflows/ci/badge.svg
 [2]: https://github.com/electrode-io/ern-navigation/actions
+[3]: https://native.electrode.io/introduction/what-is-ern/requirements
+[4]: https://native.electrode.io/introduction/what-is-ern/what-is-a-miniapp
+[5]: https://github.com/electrode-io/movies-reloaded-miniapp
+[6]: https://medium.com/walmartlabs/electrode-native-navigation-576297fbcb3d

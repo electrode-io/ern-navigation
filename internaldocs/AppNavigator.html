@@ -161,7 +161,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="app-navigator.js.html">app-navigator.js</a>, <a href="app-navigator.js.html#line26">line 26</a>
+        <a href="app-navigator.js.html">app-navigator.js</a>, <a href="app-navigator.js.html#line28">line 28</a>
     </li></ul></dd>
     
 
@@ -192,13 +192,15 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>import { AppNavigator } from 'ern-navigation'
-new AppNavigator({
-  'MainScreen': MainScreenComponent,
-  'SecondScreen': SecondScreenComponent
-}, {
-  initialScreen: 'MainScreen'
-}).registerAll('MyMiniApp')</code></pre>
+    <pre class="prettyprint"><code>import {AppNavigator} from 'ern-navigation';
+
+new AppNavigator(
+  {
+    MainScreen: MainScreenComponent,
+    SecondScreen: SecondScreenComponent,
+  },
+  {initialScreen: 'MainScreen'},
+).registerAll('MyMiniApp');</code></pre>
 
 
 
@@ -329,7 +331,7 @@ new AppNavigator({
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="app-navigator.js.html">app-navigator.js</a>, <a href="app-navigator.js.html#line50">line 50</a>
+        <a href="app-navigator.js.html">app-navigator.js</a>, <a href="app-navigator.js.html#line52">line 52</a>
     </li></ul></dd>
     
 
