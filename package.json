@@ -5,7 +5,8 @@
   "description": "Components and API for Electrode Native Navigation",
   "main": "src/index.js",
   "scripts": {
-    "docs": "rm -rf docs/ internaldocs/ && jsdoc src -r  -c jsdoc.js -d docs && jsdoc src -r  -c jsdoc.js -p -d internaldocs",
+    "docs": "rm -rf docs/ && jsdoc src -r -c jsdoc.js -d docs -R README.md",
+    "docs:private": "rm -rf docs-private/ && jsdoc src -r -c jsdoc.js -p -d docs-private -R README.md",
     "lint": "eslint ."
   },
   "repository": {
