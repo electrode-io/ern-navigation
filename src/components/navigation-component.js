@@ -25,7 +25,7 @@ import AppNavigator from './app-navigator';
  *         icon: Image.resolveAssetSource(exitIcon).uri,
  *         id: 'exit',
  *         location: 'right',
- *         accessibilityLabel: 'Exit this app',
+ *         adaLabel: 'Exit this app',
  *       },
  *     ],
  *   };
@@ -59,7 +59,7 @@ import AppNavigator from './app-navigator';
  * or the name of a built-in icon.
  * @property {?string} title - The title for the button; will be used in case of missing or invalid icon.
  * @property {!string} id - The ID of the button; will be used in header button events.  Cannot contain '.'.
- * @property {?string} accessibilityLabel - The text to read out with screen-reader technology.
+ * @property {?string} adaLabel - The text to read out with screen-reader technology.
  */
 
 /**
@@ -68,7 +68,7 @@ import AppNavigator from './app-navigator';
  * or the name of a built-in icon.
  * @property {?string} title - The title for the button (iOS only).
  * @property {?string} id - The ID of the button; will be used in header button events.  If set, the press event must be handled on the Javascript side, as native will no longer handle the back press.  Cannot contain '.'.
- * @property {?string} accessibilityLabel - The text to read out with screen-reader technology.
+ * @property {?string} adaLabel - The text to read out with screen-reader technology.
  */
 
 /**

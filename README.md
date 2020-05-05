@@ -37,7 +37,7 @@ export default class MainScreenComponent extends Component {
       icon: Image.resolveAssetSource(exitIcon).uri,
       id: 'exit',
       location: 'right',
-      accessibilityLabel: 'Exit this app'
+      adaLabel: 'Exit this app'
     }]
   };
   onNavButtonPress (buttonId) {
