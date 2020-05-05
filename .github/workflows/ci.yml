@@ -8,6 +8,5 @@ jobs:
       - uses: actions/setup-node@v1
       - run: yarn
       - run: yarn lint
-      - run: yarn docs
-      - name: Check docs
-        run: \[ -z "$(git status --porcelain)" \] || (echo "Docs are out-of-sync. Please run 'yarn docs' and include doc updates in the same commit that changed the code." && exit 1)
+#      - name: Check docs
+#        run: yarn docs && \[ -z "$(git status --porcelain)" \] || (echo "Docs are out-of-sync. Please run 'yarn docs' and include doc updates in the same commit that changed the code." && exit 1)
