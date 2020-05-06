@@ -6,7 +6,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
+        with:
+          node-version: 12
       - run: yarn
       - run: yarn lint
-#      - name: Check docs
-#        run: yarn docs && \[ -z "$(git status --porcelain)" \] || (echo "Docs are out-of-sync. Please run 'yarn docs' and include doc updates in the same commit that changed the code." && exit 1)
+      - name: Check docs
+        run: yarn docs && \[ -z "$(git status --porcelain)" \] || (echo "Docs are out-of-sync. Please run 'yarn docs' using Node.js 12 or later, and include doc updates in the same commit that changed the code." && exit 1)
