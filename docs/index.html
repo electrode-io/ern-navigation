@@ -106,7 +106,10 @@
 			<div class="col-md-9 main-content">
 		<section class="readme-section">
 			<article><h1>ern-navigation</h1>
-<p><a href="https://github.com/electrode-io/ern-navigation/actions"><img src="https://github.com/electrode-io/ern-navigation/workflows/ci/badge.svg" alt="ci"></a></p>
+<p><a href="https://github.com/electrode-io/ern-navigation/actions"><img src="https://github.com/electrode-io/ern-navigation/workflows/ci/badge.svg" alt="ci"></a>
+<a href="https://badge.fury.io/js/ern-navigation"><img src="https://badge.fury.io/js/ern-navigation.svg" alt="npm version"></a>
+<a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License"></a>
+<a href="https://www.electrode.io/ern-navigation"><img src="https://img.shields.io/badge/docs-jsdoc-green.svg" alt="docs"></a></p>
 <h2>Getting Started</h2>
 <h3>Prerequisites</h3>
 <ul>
@@ -117,12 +120,14 @@
 <p>Install <code>ern-navigation</code> as a dependency in your miniapp:</p>
 <pre class="prettyprint source lang-sh"><code>yarn add ern-navigation
 </code></pre>
-<p>Or <code>npm install --save ern-navigation</code></p>
-<h3>Integration</h3>
+<p>Alternatively: <code>npm i --save ern-navigation</code></p>
+<h2>Documentation</h2>
+<p>Detailed API documentation is available on our website:</p>
+<p><a href="https://www.electrode.io/ern-navigation">https://www.electrode.io/ern-navigation</a></p>
+<h2>Example</h2>
 <p>First, let's create some components to act as the app's different screens.
 Each of these components should extend Electrode Native Navigation's
-<a href="#Component">Component</a> class, and will need to define a few class
-properties. Here's an example:</p>
+<a href="http://www.electrode.io/ern-navigation/Component.html">Component</a> class, and will need to define a few class properties:</p>
 <pre class="prettyprint source lang-js"><code>import {Component} from 'ern-navigation';
 
 export default class MainScreenComponent extends Component {
@@ -151,8 +156,7 @@ export default class MainScreenComponent extends Component {
 }
 </code></pre>
 <p>Once all screen components have been created, they will need to be registered
-using Electrode Native Navigation's <a href="#AppNavigator">AppNavigator</a>
-class, like this:</p>
+using Electrode Native Navigation's <a href="http://www.electrode.io/ern-navigation/AppNavigator.html">AppNavigator</a> class:</p>
 <pre class="prettyprint source lang-js"><code>import {AppNavigator} from 'ern-navigation';
 
 new AppNavigator({
@@ -168,14 +172,25 @@ referred to as <code>MainScreen</code> and <code>SecondScreen</code>, respective
 navigation is performed. From inside any of the screen components, calling
 <code>this.navigateInternal(screenName)</code> will navigate to the specified registered
 screen.</p>
-<h2>Example</h2>
+<h2>Further Reading</h2>
 <p>The <a href="https://github.com/electrode-io/movies-reloaded-miniapp">movies-reloaded</a> miniapp outlines the different mechanisms that are
 provided to you by Electrode Native Navigation.</p>
-<h2>Further Reading</h2>
-<p>Check out our <a href="https://medium.com/walmartlabs/electrode-native-navigation-576297fbcb3d">Electrode Native Navigation Blog Post</a>.</p>
-<h2>Documentation</h2>
-<p>Check the documentation for more information.</p>
-<p>© 2019 WalmartLabs</p></article>
+<p>Also check out our <a href="https://medium.com/walmartlabs/electrode-native-navigation-576297fbcb3d">Electrode Native Navigation Blog Post</a>.</p>
+<h2>License</h2>
+<pre class="prettyprint source lang-text"><code>Copyright 2020 Walmart Labs
+
+Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+</code></pre></article>
 		</section>
 			</div>
 				<div class="col-md-3 side-content">
