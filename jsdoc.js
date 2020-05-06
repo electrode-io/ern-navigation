@@ -14,7 +14,7 @@ module.exports = {
     include: ['src'],
   },
   opts: {
-    destination: 'docs',
+    destination: 'public',
     readme: 'README.md',
     recurse: true,
     template: 'node_modules/foodoc/template',

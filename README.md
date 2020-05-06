@@ -28,6 +28,11 @@ Detailed API documentation is available on our website:
 
 [https://www.electrode.io/ern-navigation][7]
 
+Updates to the documentation will be deployed to `gh-pages` automatically with
+every merge to `master`. The documentation can also be generated locally by
+running `yarn docs`. Open `public/index.html` to preview the website. Use
+`yarn docs -p` to include private symbols as well.
+
 ## Example
 
 First, let's create some components to act as the app's different screens.
