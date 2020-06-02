@@ -1,7 +1,0 @@
-ios/
-android/
-yarn.lock
-.flowconfig
-.buckconfig
-.gitattributes
-.watchmanconfig
