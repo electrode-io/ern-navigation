@@ -49,8 +49,15 @@ import AppNavigator from './app-navigator';
  * @typedef {Object} NavigationBar
  * @property {string} title - The title for the navigation bar.
  * @property {?boolean} overlay - (optional) Show this page as an overlay (navigate only).
+ * @property {?boolean} hide - (optional) Hide this page's navigation bar.
  * @property {Button[]} buttons - The {@link Button}s to display on the right side of the navigation bar.
  * @property {?LeftButton} leftButton - The {@link LeftButton} to display on the left side of the navigation bar.
+ */
+
+/**
+ * @typedef {Object} RouteOptions
+ * @property {?boolean} overlay - (optional) Show this page as an overlay (navigate only).
+ * @property {?boolean} replace - (optional) Replace the current page with this page in the stack.
  */
 
 /**
@@ -67,7 +74,8 @@ import AppNavigator from './app-navigator';
  * @property {?string} icon - The location of the icon (use <code>Image.resolveAssetSource(iconFile).uri</code>)
  * or the name of a built-in icon.
  * @property {?string} title - The title for the button (iOS only).
- * @property {?string} id - The ID of the button; will be used in header button events.  If set, the press event must be handled on the Javascript side, as native will no longer handle the back press.  Cannot contain '.'.
+ * @property {?string} id - The ID of the button; will be used in header button events.  If set, the press event
+ * must be handled on the Javascript side, as native will no longer handle the back press.  Cannot contain '.'.
  * @property {?string} adaLabel - The text to read out with screen-reader technology.
  */
 
@@ -385,10 +393,11 @@ class Component extends React.Component {
    * should be defined in the initial {@link AppNavigator} setup.
    * @param {Object} [jsonPayload] - (optional) The JSON payload with props to send to the new
    * screen.
+   * @param {RouteOptions} [options] - (optional) Additional route options.
    * @return {Promise} A <code>Promise</code> which will resolve or reject upon attempting to
    * navigate to the new screen.
    */
-  navigateInternal(screenName, jsonPayload) {
+  navigateInternal(screenName, jsonPayload, options = {}) {
     if (!this.constructor.getAppNavigator()) {
       throw errors.invalidAppNavigator;
     }
@@ -418,6 +427,7 @@ class Component extends React.Component {
       path: nav.getRegisteredRoute(),
       overlay,
       navigationBar,
+      ...options,
       jsonPayload: JSON.stringify(jsonPayload || {}),
     };
     return EnNavigationApi.requests().navigate(routePayload);
