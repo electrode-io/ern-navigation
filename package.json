@@ -8,8 +8,7 @@
     "src/"
   ],
   "scripts": {
-    "docs": "rm -rf docs/ && jsdoc -c jsdoc.js",
-    "docs:private": "rm -rf docs-private/ && jsdoc -c jsdoc.js -p",
+    "docs": "jsdoc -c jsdoc.js",
     "lint": "eslint ."
   },
   "repository": {
