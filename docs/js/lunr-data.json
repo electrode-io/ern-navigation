@@ -215,6 +215,7 @@
           "lt;async&gt",
           "navig",
           "navigateintern",
+          "option",
           "promis",
           "screen",
           "screennam"
@@ -451,7 +452,7 @@
                                     "docs": {
                                       "Component.html#navigateInternal": {
                                         "ref": "Component.html#navigateInternal",
-                                        "tf": 670
+                                        "tf": 666.6666666666666
                                       }
                                     }
                                   }
@@ -1056,7 +1057,7 @@
                           "docs": {
                             "Component.html#navigateInternal": {
                               "ref": "Component.html#navigateInternal",
-                              "tf": 20
+                              "tf": 16.666666666666664
                             },
                             "Component.html#backTo": {
                               "ref": "Component.html#backTo",
@@ -2214,7 +2215,7 @@
                                 },
                                 "Component.html#navigateInternal": {
                                   "ref": "Component.html#navigateInternal",
-                                  "tf": 20
+                                  "tf": 16.666666666666664
                                 },
                                 "Component.html#backTo": {
                                   "ref": "Component.html#backTo",
@@ -2576,6 +2577,26 @@
                 }
               }
             }
+          },
+          "p": {
+            "docs": {},
+            "t": {
+              "docs": {},
+              "i": {
+                "docs": {},
+                "o": {
+                  "docs": {},
+                  "n": {
+                    "docs": {
+                      "Component.html#navigateInternal": {
+                        "ref": "Component.html#navigateInternal",
+                        "tf": 16.666666666666664
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "f": {
@@ -2852,7 +2873,7 @@
                                 },
                                 "Component.html#navigateInternal": {
                                   "ref": "Component.html#navigateInternal",
-                                  "tf": 20
+                                  "tf": 16.666666666666664
                                 }
                               }
                             }
@@ -2933,7 +2954,7 @@
                       },
                       "Component.html#navigateInternal": {
                         "ref": "Component.html#navigateInternal",
-                        "tf": 20
+                        "tf": 16.666666666666664
                       },
                       "Component.html#backTo": {
                         "ref": "Component.html#backTo",
@@ -3071,7 +3092,7 @@
           }
         }
       },
-      "length": 179
+      "length": 180
     },
     "corpusTokens": [
       "appdata",
@@ -3145,6 +3166,7 @@
       "onblur",
       "onfocu",
       "onnavbuttonpress",
+      "option",
       "overrid",
       "overridden",
       "payload",
@@ -3349,7 +3371,7 @@
     "Component.html#navigateInternal": {
       "id": "Component.html#navigateInternal",
       "kind": "function",
-      "title": "&lt;async&gt; navigateInternal( screenName [, jsonPayload ] ) → {Promise}",
+      "title": "&lt;async&gt; navigateInternal( screenName [, jsonPayload [, options ] ] ) → {Promise}",
       "longname": "Component#navigateInternal",
       "name": "navigateInternal",
       "tags": "Component#navigateInternal navigateInternal",
