@@ -1,7 +1,7 @@
 {
   "name": "ern-navigation",
   "author": "Electrode Native Team",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Components and API for Electrode Native Navigation",
   "main": "src/index.js",
   "files": [
