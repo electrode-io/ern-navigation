@@ -35,15 +35,15 @@
     "react-native": "*"
   },
   "devDependencies": {
-    "@babel/core": "^7.6.2",
-    "@babel/runtime": "^7.6.2",
+    "@babel/core": "^7.8.4",
+    "@babel/runtime": "^7.8.4",
     "@react-native-community/eslint-config": "^1.1.0",
-    "babel-jest": "^24.9.0",
-    "eslint": "^7.2.0",
+    "babel-jest": "^25.1.0",
+    "eslint": "^7.15.0",
     "foodoc": "^0.0.9",
-    "jsdoc": "^3.6.4",
-    "metro-react-native-babel-preset": "^0.58.0",
-    "react": "16.11.0",
-    "react-native": "0.62.2"
+    "jsdoc": "^3.6.6",
+    "metro-react-native-babel-preset": "^0.59.0",
+    "react": "16.13.1",
+    "react-native": "0.63.4"
   }
 }

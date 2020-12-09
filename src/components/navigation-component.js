@@ -75,7 +75,7 @@ import AppNavigator from './app-navigator';
  * or the name of a built-in icon.
  * @property {?string} title - The title for the button (iOS only).
  * @property {?string} id - The ID of the button; will be used in header button events.  If set, the press event
- * must be handled on the Javascript side, as native will no longer handle the back press.  Cannot contain '.'.
+ * must be handled on the JavaScript side, as native will no longer handle the back press.  Cannot contain '.'.
  * @property {?string} adaLabel - The text to read out with screen-reader technology.
  */
 
