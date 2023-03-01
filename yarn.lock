@@ -2331,25 +2331,18 @@ envinfo@^7.7.2:
   integrity sha512-46+j5QxbPWza0PB1i15nZx0xQ4I/EfQxg9J8Had3b408SV63nEtor2e+oiY63amTo9KTuh2a3XLObNwduxYwwA==
 
 ernnavigation-api-impl-native@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/ernnavigation-api-impl-native/-/ernnavigation-api-impl-native-2.0.0.tgz#a513c4bdc9a21d8853170184c16df3aade1a5416"
-  integrity sha512-/PZ1UtQhZuGqOtJrtdOXGAUxteTS6kKsdNtfXQVnap7dQmEkCcMrr1zq3Qy4yRv2PFwzcjk+UVTu0fAIq9Onnw==
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/ernnavigation-api-impl-native/-/ernnavigation-api-impl-native-2.1.0.tgz#e63ef278b03d01e2438482cb891e04a424838dd2"
+  integrity sha512-gPkg6ZfCjwPixgGAfcAhslUuAXEfY/yLKJrgvRBznR0mPiWAxrf7oSWs1EerWrsGT75aAaGhbEFPleEf/KpQfg==
   dependencies:
-    ernnavigation-api "1.2.1"
-
-ernnavigation-api@1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/ernnavigation-api/-/ernnavigation-api-1.2.1.tgz#5e44cd4dcfc89544e2283d9e40ab1be18d80e243"
-  integrity sha512-Kyv63hJ+tb0RsXnX7iEB4xtxdgJTKD7ksqSP7L4oeCBfLDTOtBpy63VUywcjW7WUgZ3Bcyxr1xiuPpASw6k3pA==
-  dependencies:
-    react-native-electrode-bridge "1.5.x"
+    ernnavigation-api "^2.0.0"
 
 ernnavigation-api@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/ernnavigation-api/-/ernnavigation-api-2.0.0.tgz#21aef7048598fc8b27a33a7f779dd66257128abf"
-  integrity sha512-DNgA2jTCRxM5PU/Mytmzt2tgCXOzi3jnnc9nHfEWTiQnkZs9IWgXvDftzSqE+zchRN5AFNkteUDkO0v9RWuKSw==
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/ernnavigation-api/-/ernnavigation-api-2.1.0.tgz#316c2e4fd3f6dfb8fed06ffa2c9323acf594a529"
+  integrity sha512-tCWx4IgvsXtOohS0esmF9b/rSBDv7we7S2p8oTmImRRa3P5SyRO0LVpef90M91o9t3uZqgeTFOBNwjcBb3hwLA==
   dependencies:
-    react-native-electrode-bridge "1.5.x"
+    react-native-electrode-bridge "^1.5.27"
 
 error-ex@^1.2.0, error-ex@^1.3.1:
   version "1.3.2"
@@ -2610,7 +2603,7 @@ eventemitter3@^3.0.0:
 events@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/events/-/events-1.1.1.tgz#9ebdb7635ad099c70dcc4c2a1f5004288e8bd924"
-  integrity sha1-nr23Y1rQmccNzEwqH1AEKI6L2SQ=
+  integrity sha512-kEcvvCBByWXGnZy6JUlgAp2gBIUjfCAV6P6TgT1/aaQKcmuAEC4OZTV1I4EWQLz2gxZw76atuVyvHhTxvi0Flw==
 
 exec-sh@^0.3.2:
   version "0.3.2"
@@ -5422,10 +5415,10 @@ react-is@^16.12.0, react-is@^16.8.1, react-is@^16.8.4:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-native-electrode-bridge@1.5.x:
-  version "1.5.19"
-  resolved "https://registry.yarnpkg.com/react-native-electrode-bridge/-/react-native-electrode-bridge-1.5.19.tgz#146051a478a0a709bc15e6d9746f7ea23061d46a"
-  integrity sha512-15PTawA0jYSpcG0Ej8GXjwOFCAWW4hbP/NK7ZAL/gxVifhiBhN2GcCxAP76hd4iwJCNMDn6D6qmTh542/ck+Fw==
+react-native-electrode-bridge@^1.5.27:
+  version "1.5.27"
+  resolved "https://registry.yarnpkg.com/react-native-electrode-bridge/-/react-native-electrode-bridge-1.5.27.tgz#28396b2bf647252cd50437eec741fbb912ee0dea"
+  integrity sha512-eYtg9PjnQBJN25EqgkkALjWAFaFuVQvhlRl3WiBt3nZPFQRAAv8aVFCh5t1Bbn7BiEVkDcw+vIUSWbTkUROVng==
   dependencies:
     events "^1.1.1"
     uuid "^3.0.0"
@@ -6615,9 +6608,9 @@ utils-merge@1.0.1:
   integrity sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=
 
 uuid@^3.0.0, uuid@^3.3.2:
-  version "3.3.3"
-  resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.3.tgz#4568f0216e78760ee1dbf3a4d2cf53e224112866"
-  integrity sha512-pW0No1RGHgzlpHJO1nsVrHKpOEIxkGg1xB+v0ZmdNH5OAeAwzAVrCnI2/6Mtx+Uys6iaylxa+D3g4j63IKKjSQ==
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
+  integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
 
 v8-compile-cache@^2.0.3:
   version "2.2.0"
