@@ -2330,10 +2330,10 @@ envinfo@^7.7.2:
   resolved "https://registry.yarnpkg.com/envinfo/-/envinfo-7.7.3.tgz#4b2d8622e3e7366afb8091b23ed95569ea0208cc"
   integrity sha512-46+j5QxbPWza0PB1i15nZx0xQ4I/EfQxg9J8Had3b408SV63nEtor2e+oiY63amTo9KTuh2a3XLObNwduxYwwA==
 
-ernnavigation-api-impl-native@^2.0.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/ernnavigation-api-impl-native/-/ernnavigation-api-impl-native-2.1.0.tgz#e63ef278b03d01e2438482cb891e04a424838dd2"
-  integrity sha512-gPkg6ZfCjwPixgGAfcAhslUuAXEfY/yLKJrgvRBznR0mPiWAxrf7oSWs1EerWrsGT75aAaGhbEFPleEf/KpQfg==
+ernnavigation-api-impl-native@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/ernnavigation-api-impl-native/-/ernnavigation-api-impl-native-3.0.0.tgz#92723d65b9cff19b2e67b97ad125a57929f74bf0"
+  integrity sha512-cAl7KtlBc29ZFMd7ysMO7sDI1UKh/RtM4C+k9nwL26UO/DnZMbx/DVVoi24k+dUsSqwAtSwaEg5uzFItpme40A==
   dependencies:
     ernnavigation-api "^2.0.0"
 
